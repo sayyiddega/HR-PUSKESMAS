@@ -1,0 +1,46 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+.idea/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+
+# Spring Boot
+application-local.yml
+application-dev.yml
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env.local
+frontend/.env.*.local
+
+# Uploads and storage
+uploads/
+**/uploads/
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
