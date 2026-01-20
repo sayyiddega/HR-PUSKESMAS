@@ -1,0 +1,935 @@
+{
+	"info": {
+		"_postman_id": "hr-puskesmas-api-2024",
+		"name": "HR Puskesmas API",
+		"description": "Complete API collection for HR Puskesmas application with authentication, admin features, and employee self-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🔐 Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    const jsonData = pm.response.json();",
+									"    if (jsonData.data && jsonData.data.token) {",
+									"        pm.environment.set('auth_token', jsonData.data.token);",
+									"        console.log('Token saved to environment');",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pegawai1@puskesmas.id\",\n    \"password\": \"password123\",\n    \"fullName\": \"Budi Santoso\",\n    \"position\": \"Perawat\",\n    \"department\": \"Pelayanan\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "register"]
+						},
+						"description": "Register new user account and employee profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const jsonData = pm.response.json();",
+									"    if (jsonData.data && jsonData.data.token) {",
+									"        pm.environment.set('auth_token', jsonData.data.token);",
+									"        console.log('Token saved to environment');",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@puskesmas.id\",\n    \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "login"]
+						},
+						"description": "Login and get JWT access token"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "logout"]
+						},
+						"description": "Logout and blacklist current JWT token"
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication endpoints for user registration, login, and logout"
+		},
+		{
+			"name": "👤 Admin - Dashboard",
+			"item": [
+				{
+					"name": "Get Dashboard Summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/dashboard",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "dashboard"]
+						},
+						"description": "Get admin dashboard statistics (total employees, documents, leave requests, etc.)"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin dashboard endpoints"
+		},
+		{
+			"name": "👥 Admin - Employees",
+			"item": [
+				{
+					"name": "List All Employees",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/employees",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "employees"]
+						},
+						"description": "Get list of all employees"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/employees/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "employees", "1"]
+						},
+						"description": "Get employee details by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pegawai2@puskesmas.id\",\n    \"password\": \"password123\",\n    \"fullName\": \"Siti Nurhaliza\",\n    \"position\": \"Bidan\",\n    \"department\": \"KIA\",\n    \"phone\": \"081234567890\",\n    \"address\": \"Jl. Raya No. 123\",\n    \"dateOfBirth\": \"1990-05-15\",\n    \"joinDate\": \"2020-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/employees",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "employees"]
+						},
+						"description": "Create new employee with user account"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"Budi Santoso Updated\",\n    \"position\": \"Perawat Senior\",\n    \"department\": \"IGD\",\n    \"phone\": \"081234567891\",\n    \"address\": \"Jl. Baru No. 456\",\n    \"dateOfBirth\": \"1985-03-20\",\n    \"joinDate\": \"2019-06-01\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/employees/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "employees", "1"]
+						},
+						"description": "Update employee data"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/employees/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "employees", "1"]
+						},
+						"description": "Delete employee and associated user account"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin endpoints for managing employees"
+		},
+		{
+			"name": "📄 Admin - Document Types",
+			"item": [
+				{
+					"name": "List Document Types",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/document-types",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "document-types"]
+						},
+						"description": "Get list of all document types"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/document-types/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "document-types", "1"]
+						},
+						"description": "Get document type details by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Document Type",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"KTP\",\n    \"description\": \"Kartu Tanda Penduduk\",\n    \"mandatory\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/document-types",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "document-types"]
+						},
+						"description": "Create new document type"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Document Type",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"KTP Updated\",\n    \"description\": \"Kartu Tanda Penduduk (Updated)\",\n    \"mandatory\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/document-types/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "document-types", "1"]
+						},
+						"description": "Update document type"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Document Type",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/document-types/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "document-types", "1"]
+						},
+						"description": "Delete document type"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin endpoints for managing document types (master documents)"
+		},
+		{
+			"name": "📎 Admin - Documents",
+			"item": [
+				{
+					"name": "List Uploaded Documents (Grouped by Employee)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/documents/uploads",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "documents", "uploads"]
+						},
+						"description": "Get all uploaded documents grouped by employee (shows who uploaded what)"
+					},
+					"response": []
+				},
+				{
+					"name": "List Uploaded Documents (Filter by Document Type)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/documents/uploads?documentTypeId=1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "documents", "uploads"],
+							"query": [
+								{
+									"key": "documentTypeId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Get uploaded documents filtered by document type ID"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin endpoints for viewing uploaded documents"
+		},
+		{
+			"name": "🏖️ Admin - Leave Requests",
+			"item": [
+				{
+					"name": "List All Leave Requests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/leaves",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "leaves"]
+						},
+						"description": "Get list of all leave requests"
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Leave Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/leaves/1/approve",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "leaves", "1", "approve"]
+						},
+						"description": "Approve a leave request"
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Leave Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/leaves/1/reject",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "leaves", "1", "reject"]
+						},
+						"description": "Reject a leave request"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin endpoints for managing leave requests (approve/reject)"
+		},
+		{
+			"name": "⚙️ Admin - Settings",
+			"item": [
+				{
+					"name": "Get Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/settings",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "settings"]
+						},
+						"description": "Get application settings (site name, address, phone, base URL, logo)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Settings",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"siteName\": \"HR Puskesmas\",\n    \"address\": \"Jl. Raya Puskesmas No. 123, Jakarta\",\n    \"phone\": \"021-12345678\",\n    \"websiteBaseUrl\": \"https://hr.puskesmas.id\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/settings",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "settings"]
+						},
+						"description": "Update application settings (text fields only)"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Logo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "form-data",
+							"form-data": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/settings/logo",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "settings", "logo"]
+						},
+						"description": "Upload or update application logo (png/jpg/jpeg)"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin endpoints for managing application settings"
+		},
+		{
+			"name": "📊 Employee - Dashboard",
+			"item": [
+				{
+					"name": "Get Dashboard Summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/employee/dashboard",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "dashboard"]
+						},
+						"description": "Get employee dashboard statistics (own documents, mandatory docs status, leave requests)"
+					},
+					"response": []
+				}
+			],
+			"description": "Employee dashboard endpoints"
+		},
+		{
+			"name": "👤 Employee - Profile",
+			"item": [
+				{
+					"name": "Get Own Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/employee/profile",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "profile"]
+						},
+						"description": "Get own employee profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Own Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"Budi Santoso Updated\",\n    \"position\": \"Perawat Senior\",\n    \"department\": \"IGD\",\n    \"phone\": \"081234567891\",\n    \"address\": \"Jl. Baru No. 456\",\n    \"dateOfBirth\": \"1985-03-20\",\n    \"joinDate\": \"2019-06-01\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/employee/profile",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "profile"]
+						},
+						"description": "Update own employee profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newPassword\": \"newpassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/employee/profile/password",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "profile", "password"]
+						},
+						"description": "Change own password"
+					},
+					"response": []
+				}
+			],
+			"description": "Employee endpoints for managing own profile"
+		},
+		{
+			"name": "📎 Employee - Documents",
+			"item": [
+				{
+					"name": "List Own Documents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/employee/documents",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "documents"]
+						},
+						"description": "Get list of own uploaded documents with missing mandatory documents warning"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Document",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "form-data",
+							"form-data": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": [],
+									"description": "PDF, JPG, or PNG file"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/employee/documents/1/upload",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "documents", "1", "upload"],
+							"description": "Replace '1' with document type ID"
+						},
+						"description": "Upload document for a specific document type (pdf/jpg/png)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Own Document",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/employee/documents/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "documents", "1"]
+						},
+						"description": "Delete own uploaded document"
+					},
+					"response": []
+				}
+			],
+			"description": "Employee endpoints for managing own documents"
+		},
+		{
+			"name": "🏖️ Employee - Leave Requests",
+			"item": [
+				{
+					"name": "List Own Leave Requests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/employee/leaves",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "leaves"]
+						},
+						"description": "Get list of own leave requests"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Leave Request (Without Attachment)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "form-data",
+							"form-data": [
+								{
+									"key": "data",
+									"value": "{\"startDate\":\"2024-12-20\",\"endDate\":\"2024-12-25\",\"reason\":\"Liburan akhir tahun\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/employee/leaves",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "leaves"]
+						},
+						"description": "Create leave request without attachment"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Leave Request (With Attachment)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "form-data",
+							"form-data": [
+								{
+									"key": "data",
+									"value": "{\"startDate\":\"2024-12-20\",\"endDate\":\"2024-12-25\",\"reason\":\"Liburan akhir tahun\"}",
+									"type": "text"
+								},
+								{
+									"key": "attachment",
+									"type": "file",
+									"src": [],
+									"description": "Optional attachment file"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/employee/leaves",
+							"host": ["{{base_url}}"],
+							"path": ["api", "employee", "leaves"]
+						},
+						"description": "Create leave request with optional attachment"
+					},
+					"response": []
+				}
+			],
+			"description": "Employee endpoints for managing own leave requests"
+		},
+		{
+			"name": "📁 Files",
+			"item": [
+				{
+					"name": "View File (Inline)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/files/employee-docs/1/example.pdf",
+							"host": ["{{base_url}}"],
+							"path": ["files", "employee-docs", "1", "example.pdf"]
+						},
+						"description": "View file in browser (images and PDFs are displayed inline, others are downloaded)"
+					},
+					"response": []
+				},
+				{
+					"name": "Download File",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/files/employee-docs/1/example.pdf?download=true",
+							"host": ["{{base_url}}"],
+							"path": ["files", "employee-docs", "1", "example.pdf"],
+							"query": [
+								{
+									"key": "download",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Force download file (add ?download=true parameter)"
+					},
+					"response": []
+				}
+			],
+			"description": "Public endpoints for viewing/downloading files (no authentication required)"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Auto-set Authorization header if token exists",
+					"if (pm.environment.get('auth_token')) {",
+					"    pm.request.headers.add({",
+					"        key: 'Authorization',",
+					"        value: 'Bearer ' + pm.environment.get('auth_token')",
+					"    });",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

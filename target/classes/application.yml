@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    # url: jdbc:postgresql://localhost:5432/postgres
+    # username: postgres
+    # password: 
+    url: jdbc:postgresql://192.168.1.141:7801/postgres
+    username: casaos
+    password: casaos
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: hr_puskesmas
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    # minimal 32 chars untuk HS256; ganti di production (pakai env var / secret manager)
+    secret: "change-this-secret-to-at-least-32-characters"
+    expiration-minutes: 120
+  storage:
+    upload-dir: uploads
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
