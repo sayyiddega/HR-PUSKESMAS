@@ -1,0 +1,29 @@
+# Multi-stage build untuk backend Spring Boot
+FROM maven:3.9-eclipse-temurin-17 AS build
+
+WORKDIR /app
+
+# Copy pom.xml dan download dependencies (layer caching)
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+# Copy source code dan build
+COPY src ./src
+RUN mvn clean package -DskipTests -B
+
+# Runtime stage
+FROM eclipse-temurin:17-jre-alpine
+
+WORKDIR /app
+
+# Copy JAR dari build stage
+COPY --from=build /app/target/hr-*.jar app.jar
+
+# Buat direktori untuk uploads
+RUN mkdir -p /app/uploads/employee-docs /app/uploads/profile-photos /app/uploads/logos /app/uploads/message-attachments
+
+# Expose port
+EXPOSE 8080
+
+# Run aplikasi
+ENTRYPOINT ["java", "-jar", "app.jar"]

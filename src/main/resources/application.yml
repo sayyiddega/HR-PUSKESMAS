@@ -1,20 +1,17 @@
 spring:
   datasource:
-    # url: jdbc:postgresql://localhost:5432/postgres
-    # username: postgres
-    # password: 
-    url: jdbc:postgresql://192.168.1.141:7801/postgres
-    username: casaos
-    password: casaos
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5432/postgres}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}
     properties:
       hibernate:
-        default_schema: hr_puskesmas
+        default_schema: ${SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA:hr_puskesmas}
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   servlet:
@@ -24,15 +21,15 @@ spring:
       max-request-size: 10MB
 
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 app:
   jwt:
     # minimal 32 chars untuk HS256; ganti di production (pakai env var / secret manager)
-    secret: "change-this-secret-to-at-least-32-characters"
-    expiration-minutes: 120
+    secret: ${APP_JWT_SECRET:change-this-secret-to-at-least-32-characters}
+    expiration-minutes: ${APP_JWT_EXPIRATION_MINUTES:120}
   storage:
-    upload-dir: uploads
+    upload-dir: ${APP_STORAGE_UPLOAD_DIR:uploads}
 
 springdoc:
   swagger-ui:
