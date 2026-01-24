@@ -44,3 +44,12 @@ APP_JWT_EXPIRATION_MINUTES=120
 # URL backend dari sisi browser
 VITE_API_URL=https://apitny.uctech.online/api
 
+########################
+# Cloudflare Tunnel (opsional)
+########################
+
+# Isi dengan Tunnel Token dari dashboard Cloudflare.
+# Jika di-set, REBUILD_AND_RESTART_CLOUDFLARE_TUNNEL.sh
+# akan otomatis menjalankan container cloudflared.
+CF_TUNNEL_TOKEN=
+
