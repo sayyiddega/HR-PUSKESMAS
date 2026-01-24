@@ -1,0 +1,40 @@
+========================================
+PERINTAH UNTUK REBUILD & RESTART
+========================================
+
+Jalankan perintah berikut secara berurutan:
+
+1. REBUILD BACKEND JAR (jika Maven tersedia):
+   cd /media/devmon/IR5_CCSA_X64FRE_EN-U/website/tenayan
+   mvn clean package -DskipTests
+
+2. BUILD BACKEND DOCKER IMAGE:
+   cd /media/devmon/IR5_CCSA_X64FRE_EN-U/website/tenayan
+   docker build -t hr-backend:latest -f dockerfile .
+
+3. REBUILD FRONTEND:
+   cd /media/devmon/IR5_CCSA_X64FRE_EN-U/website/tenayan/frontend
+   npm run build
+
+4. BUILD FRONTEND DOCKER IMAGE:
+   cd /media/devmon/IR5_CCSA_X64FRE_EN-U/website/tenayan/frontend
+   docker build -t hr-frontend:latest -f dockerfile .
+
+5. CARI NAMA CONTAINER:
+   docker ps --filter "publish=8081" --format "{{.Names}}"
+   docker ps --filter "publish=8083" --format "{{.Names}}"
+
+6. RESTART BACKEND (ganti <backend-name> dengan nama dari step 5):
+   docker stop <backend-name>
+   docker rm <backend-name>
+   docker run -d -p 8081:8080 --name <backend-name> --restart unless-stopped hr-backend:latest
+
+7. RESTART FRONTEND (ganti <frontend-name> dengan nama dari step 5):
+   docker stop <frontend-name>
+   docker rm <frontend-name>
+   docker run -d -p 8083:80 --name <frontend-name> --restart unless-stopped hr-frontend:latest
+
+ATAU JALANKAN SCRIPT:
+   bash /media/devmon/IR5_CCSA_X64FRE_EN-U/website/tenayan/execute-rebuild.sh
+
+========================================

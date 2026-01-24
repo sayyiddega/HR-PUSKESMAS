@@ -1,0 +1,46 @@
+#######################################################################
+# ENV CONFIG (Backend + Frontend) - COPY ke .env (opsional) & ke server
+#
+# File ini menjadi SATU sumber kebenaran untuk konfigurasi:
+# - Backend Spring Boot (dibaca via env di application.yml)
+# - Frontend Vite (dibaca lewat VITE_API_URL saat build)
+# - Docker runtime (dipass lewat REBUILD_AND_RESTART_FINAL.sh jika .env dibuat)
+#
+# Cara pakai:
+# 1. Salin file ini menjadi .env (di server deploy): cp ENV_CONFIG.example .env
+# 2. Sesuaikan nilainya
+# 3. Jalankan: ./REBUILD_AND_RESTART_FINAL.sh
+#######################################################################
+
+########################
+# Backend - Database
+########################
+
+SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.1.141:7801/postgres
+SPRING_DATASOURCE_USERNAME=casaos
+SPRING_DATASOURCE_PASSWORD=casaos
+
+########################
+# Backend - Storage & CORS
+########################
+
+# Folder uploads di dalam container (jangan ubah kecuali paham)
+APP_STORAGE_UPLOAD_DIR=uploads
+
+# Origins yang diizinkan untuk CORS (koma-separator)
+APP_CORS_ALLOWED_ORIGINS=https://tny.uctech.online,http://tny.uctech.online,http://localhost:3000,http://localhost:5173,http://localhost:8083
+
+########################
+# Backend - JWT (opsional override)
+########################
+
+APP_JWT_SECRET=change-this-secret-to-at-least-32-characters
+APP_JWT_EXPIRATION_MINUTES=120
+
+########################
+# Frontend - API Base URL
+########################
+
+# URL backend dari sisi browser
+VITE_API_URL=https://apitny.uctech.online/api
+

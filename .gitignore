@@ -1,0 +1,50 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Node modules (frontend)
+frontend/node_modules/
+frontend/dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS
+__MACOSX/
+Thumbs.db
+
+# Build files
+*.jar
+!target/*.jar
+
+# Uploads (jangan commit file upload)
+uploads/
+!uploads/.gitkeep
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Docker
+.dockerignore
+
+# Documentation yang tidak perlu di commit (opsional)
+# Archive.zip
+Archive.zip

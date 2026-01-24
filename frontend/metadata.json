@@ -1,0 +1,7 @@
+{
+  "name": "Sistem Informasi Kepegawaian Puskesmas (SIKEP)",
+  "description": "A comprehensive employee management system designed specifically for community health centers (Puskesmas), featuring admin and employee dashboards, dynamic document management, leave requests, and customizable branding.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

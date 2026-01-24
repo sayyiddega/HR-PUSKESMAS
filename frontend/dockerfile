@@ -1,0 +1,17 @@
+# Gunakan Nginx ringan sebagai base image
+FROM nginx:alpine
+
+# Hapus default Nginx content
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy hasil build React dari folder dist ke Nginx
+COPY dist/ /usr/share/nginx/html
+
+# Copy nginx configuration untuk SPA React
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port Nginx
+EXPOSE 80
+
+# Jalankan Nginx di foreground
+CMD ["nginx", "-g", "daemon off;"]

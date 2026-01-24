@@ -1,0 +1,51 @@
+========================================
+REBUILD JAR DENGAN DOCKER MAVEN
+========================================
+
+Karena Maven tidak tersedia, gunakan Docker Maven untuk build JAR.
+
+LANGKAH 1: Build JAR dengan Docker Maven
+-----------------------------------------
+cd /media/devmon/IR5_CCSA_X64FRE_EN-U/website/tenayan
+
+docker run --rm \
+  -v "$(pwd):/app" \
+  -w /app \
+  maven:3.8-openjdk-17 \
+  mvn clean package -DskipTests
+
+LANGKAH 2: Verifikasi JAR Baru
+-------------------------------
+ls -lh target/hr-0.0.1-SNAPSHOT.jar
+
+Pastikan timestamp BARU (bukan Jan 20 12:22)
+
+LANGKAH 3: Build Docker Image
+------------------------------
+docker build -t hr-backend:latest -f dockerfile .
+
+LANGKAH 4: Restart Container
+-----------------------------
+docker stop hr-app && docker rm hr-app
+docker run -d -p 8081:8080 --name hr-app --restart unless-stopped hr-backend:latest
+
+LANGKAH 5: Test
+---------------
+curl -X POST http://localhost:8081/api/auth/login \
+  -H "Content-Type: application/json" \
+  -H "Origin: https://tny.uctech.online" \
+  -d '{"email":"admin@puskesmas.id","password":"admin123"}' \
+  -v
+
+Expected: Status 200 (bukan 403)
+
+LANGKAH 6: Cek Logs
+-------------------
+docker logs hr-app -f
+
+Cari: "CorsFilter: Allowing origin: https://tny.uctech.online"
+
+========================================
+ATAU JALANKAN SCRIPT:
+bash REBUILD_WITH_DOCKER_MAVEN.sh
+========================================
