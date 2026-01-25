@@ -123,6 +123,7 @@ const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   // Fixed: settings initialization must be async-safe
   const [settings, setSettings] = useState<Settings>(INITIAL_SETTINGS);
+  const [isLoadingSettings, setIsLoadingSettings] = useState(true);
   const [globalNotification, setGlobalNotification] = useState<string>("");
   const [unreadCount, setUnreadCount] = useState(0);
 
@@ -132,7 +133,11 @@ const App: React.FC = () => {
       setUser(JSON.parse(savedUser));
     }
     // Load settings tanpa token (public) agar landing/login/logo tetap benar sebelum login
-    getSettingsPublic().then(setSettings).catch(console.error);
+    setIsLoadingSettings(true);
+    getSettingsPublic()
+      .then(setSettings)
+      .catch(console.error)
+      .finally(() => setIsLoadingSettings(false));
   }, []);
 
   // Load unread count periodically
@@ -179,7 +184,11 @@ const App: React.FC = () => {
   };
 
   const refreshSettings = () => {
-    getSettings().then(setSettings).catch(console.error);
+    setIsLoadingSettings(true);
+    getSettings()
+      .then(setSettings)
+      .catch(console.error)
+      .finally(() => setIsLoadingSettings(false));
   };
 
   // Sync document title & favicon dengan Master Style
@@ -207,6 +216,18 @@ const App: React.FC = () => {
       console.error('Failed to refresh unread count:', err);
     }
   };
+
+  // Loading screen saat settings masih dimuat (prevent glitch)
+  if (isLoadingSettings) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-teal-500 border-t-transparent mb-4"></div>
+          <p className="text-slate-600 font-medium">Memuat pengaturan...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Router>

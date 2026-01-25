@@ -1,9 +1,38 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Settings } from '../types';
 
 const LandingPage: React.FC<{ settings: Settings }> = ({ settings }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  // Pastikan settings sudah ter-load dari API (bukan default/initial)
+  useEffect(() => {
+    // Check jika settings sudah ter-load (ada address/phone yang biasanya dari backend, atau logoUrl)
+    // Atau minimal pastikan bukan initial state yang kosong
+    if (settings && (settings.address || settings.phone || settings.logoUrl || settings.landingHeroImageUrl)) {
+      setIsReady(true);
+    } else {
+      // Fallback: set ready setelah delay kecil untuk prevent flash
+      const timer = setTimeout(() => setIsReady(true), 150);
+      return () => clearTimeout(timer);
+    }
+  }, [settings]);
+
+  // Loading skeleton saat settings belum ready
+  if (!isReady) {
+    return (
+      <div className="bg-white min-h-screen">
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-teal-500 border-t-transparent mb-4"></div>
+            <p className="text-slate-600 font-medium">Memuat halaman...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white min-h-screen">
       {/* Navbar */}
