@@ -19,6 +19,7 @@ export enum LeaveType {
 export interface Settings {
   webName: string; // Maps to backend 'siteName'
   logoUrl: string; // Maps to backend 'logoUrl'
+  landingHeroImageUrl?: string; // Gambar hero di landing page
   address: string;
   phone: string;
   websiteBaseUrl?: string; // Maps to backend 'websiteBaseUrl'

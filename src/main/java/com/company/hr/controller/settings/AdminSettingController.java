@@ -32,14 +32,14 @@ public class AdminSettingController {
     @Operation(summary = "Get application settings")
     public AppSettingResponse get() {
         var s = settingService.getOrCreate();
-        return AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath()));
+        return AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath()), urlBuilder.fileUrl(s.getLandingHeroImagePath()));
     }
 
     @PutMapping
     @Operation(summary = "Update application settings (text fields)")
     public AppSettingResponse update(@Valid @RequestBody AppSettingRequest req) {
         var s = settingService.update(req);
-        return AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath()));
+        return AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath()), urlBuilder.fileUrl(s.getLandingHeroImagePath()));
     }
 
     @PostMapping("/logo")
@@ -52,7 +52,20 @@ public class AdminSettingController {
         }
         String path = storageService.storeLogo(file);
         var s = settingService.updateLogoPath(path);
-        return ResponseEntity.status(HttpStatus.CREATED).body(AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath())));
+        return ResponseEntity.status(HttpStatus.CREATED).body(AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath()), urlBuilder.fileUrl(s.getLandingHeroImagePath())));
+    }
+
+    @PostMapping("/landing-image")
+    @Operation(summary = "Upload/update gambar hero landing page (png/jpg)")
+    public ResponseEntity<AppSettingResponse> uploadLandingImage(@RequestParam("file") MultipartFile file) {
+        String original = file.getOriginalFilename();
+        String name = original == null ? "" : original.toLowerCase();
+        if (!(name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg"))) {
+            throw new IllegalArgumentException("Only png, jpg, jpeg allowed for landing image");
+        }
+        String path = storageService.storeLandingImage(file);
+        var s = settingService.updateLandingImagePath(path);
+        return ResponseEntity.status(HttpStatus.CREATED).body(AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath()), urlBuilder.fileUrl(s.getLandingHeroImagePath())));
     }
 }
 

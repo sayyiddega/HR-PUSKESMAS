@@ -32,6 +32,10 @@ public class StorageService {
         return store(file, "logos");
     }
 
+    public String storeLandingImage(MultipartFile file) {
+        return store(file, "landing");
+    }
+
     public String storeProfilePhoto(Long employeeId, MultipartFile file) {
         return store(file, "profile-photos/" + employeeId);
     }

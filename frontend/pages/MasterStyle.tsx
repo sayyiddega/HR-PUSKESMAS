@@ -11,7 +11,9 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [landingImagePreview, setLandingImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const landingImageInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     loadSettings();
@@ -22,6 +24,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
       const data = await getSettings();
       setSettings(data);
       setLogoPreview(data.logoUrl || null);
+      setLandingImagePreview(data.landingHeroImageUrl || null);
       // Load email from localStorage if exists
       const savedEmail = localStorage.getItem('sikep_settings_email');
       if (savedEmail) {
@@ -66,6 +69,39 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
       onUpdate();
     } catch (err: any) {
       setError(err.message || 'Gagal meng-upload logo');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleLandingImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      setError('File harus berupa gambar (PNG, JPG, JPEG)');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Ukuran file maksimal 5MB');
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      setError('');
+      setSuccess('');
+
+      await SettingsApi.settingsApi.uploadLandingImage(file);
+      const updatedSettings = await getSettings();
+      setSettings(updatedSettings);
+      setLandingImagePreview(updatedSettings.landingHeroImageUrl || null);
+
+      setSuccess('Gambar landing page berhasil di-upload!');
+      setTimeout(() => setSuccess(''), 3000);
+      onUpdate();
+    } catch (err: any) {
+      setError(err.message || 'Gagal meng-upload gambar landing');
     } finally {
       setIsLoading(false);
     }
@@ -243,8 +279,50 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
           <div>
             <h2 className="text-sm font-black text-slate-500 uppercase tracking-[0.25em] mb-2">Konten Landing Page</h2>
             <p className="text-xs text-slate-400">
-              Ubah teks yang tampil di halaman depan (hero, visi misi, dan footer) tanpa perlu ngoding.
+              Ubah teks dan gambar yang tampil di halaman depan (hero, visi misi, dan footer) tanpa perlu ngoding.
             </p>
+          </div>
+
+          {/* Gambar Hero Landing Page */}
+          <div className="rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/50 p-6">
+            <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Gambar Hero Landing Page</label>
+            <p className="text-xs text-slate-500 mb-4">Gambar besar di samping judul hero (halaman depan). Kosongkan = tampil gambar default.</p>
+            <div className="flex flex-col sm:flex-row gap-6 items-start">
+              <div className="w-full sm:max-w-xs aspect-video rounded-2xl bg-white border border-slate-200 overflow-hidden flex-shrink-0">
+                {(landingImagePreview || settings.landingHeroImageUrl) ? (
+                  <img
+                    src={landingImagePreview || settings.landingHeroImageUrl || ''}
+                    alt="Hero preview"
+                    className="w-full h-full object-cover"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-400">
+                    <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => landingImageInputRef.current?.click()}
+                  disabled={isLoading}
+                  className="px-5 py-3 bg-white border-2 border-slate-200 text-slate-600 text-sm font-bold rounded-xl hover:border-teal-500 hover:text-teal-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Mengupload...' : (landingImagePreview || settings.landingHeroImageUrl ? 'Ganti Gambar' : 'Upload Gambar')}
+                </button>
+                <input
+                  ref={landingImageInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/jpg"
+                  onChange={handleLandingImageUpload}
+                  className="hidden"
+                />
+                <p className="text-[10px] text-slate-400">PNG, JPG, JPEG (max 5MB). Disarankan landscape.</p>
+              </div>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">

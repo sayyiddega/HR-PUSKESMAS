@@ -172,6 +172,9 @@ ALTER TABLE hr_puskesmas.app_settings ADD COLUMN IF NOT EXISTS landing_mission2 
 ALTER TABLE hr_puskesmas.app_settings ADD COLUMN IF NOT EXISTS landing_mission3 VARCHAR(300);
 ALTER TABLE hr_puskesmas.app_settings ADD COLUMN IF NOT EXISTS landing_footer_text VARCHAR(1000);
 
+-- Delta: Gambar hero landing page (banner di halaman depan)
+ALTER TABLE hr_puskesmas.app_settings ADD COLUMN IF NOT EXISTS landing_hero_image_path VARCHAR(500);
+
 -- ============================================
 -- INSERT: Administrator Default
 -- ============================================

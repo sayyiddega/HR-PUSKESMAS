@@ -79,6 +79,7 @@ export const mapSettings = (s: SettingsApi.AppSettings): Settings => {
   return {
     webName: s.siteName || 'SIKEP PUSKESMAS',
     logoUrl: s.logoUrl || '',
+    landingHeroImageUrl: s.landingHeroImageUrl,
     address: s.address || '',
     phone: s.phone || '',
     websiteBaseUrl: s.websiteBaseUrl,

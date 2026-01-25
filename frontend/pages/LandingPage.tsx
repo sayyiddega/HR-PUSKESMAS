@@ -64,9 +64,13 @@ const LandingPage: React.FC<{ settings: Settings }> = ({ settings }) => {
           </div>
           <div className="relative">
             <img 
-              src="https://picsum.photos/seed/doctor/800/600" 
-              alt="Medical Team" 
-              className="rounded-[3rem] shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500" 
+              src={settings.landingHeroImageUrl || 'https://picsum.photos/seed/doctor/800/600'} 
+              alt="Hero" 
+              className="rounded-[3rem] shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 w-full max-w-lg object-cover" 
+              onError={(e) => {
+                const el = e.target as HTMLImageElement;
+                if (settings.landingHeroImageUrl) el.src = 'https://picsum.photos/seed/doctor/800/600';
+              }}
             />
             <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl border border-slate-100 max-w-[240px]">
               <div className="flex items-center gap-3 mb-2">

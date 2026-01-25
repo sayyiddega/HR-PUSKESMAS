@@ -30,6 +30,6 @@ public class PublicSettingController {
     @Operation(summary = "Get application settings (public, no auth)")
     public AppSettingResponse get() {
         var s = settingService.getOrCreate();
-        return AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath()));
+        return AppSettingResponse.from(s, urlBuilder.fileUrl(s.getLogoPath()), urlBuilder.fileUrl(s.getLandingHeroImagePath()));
     }
 }

@@ -11,6 +11,7 @@ public record AppSettingResponse(
         String websiteBaseUrl,
         String logoPath,
         String logoUrl,
+        String landingHeroImageUrl,
         Instant updatedAt,
 
         // Landing page configurable texts
@@ -24,7 +25,7 @@ public record AppSettingResponse(
         String landingMission3,
         String landingFooterText
 ) {
-    public static AppSettingResponse from(AppSetting s, String logoUrl) {
+    public static AppSettingResponse from(AppSetting s, String logoUrl, String landingHeroImageUrl) {
         return new AppSettingResponse(
                 s.getSiteName(),
                 s.getAddress(),
@@ -32,6 +33,7 @@ public record AppSettingResponse(
                 s.getWebsiteBaseUrl(),
                 s.getLogoPath(),
                 logoUrl,
+                landingHeroImageUrl,
                 s.getUpdatedAt(),
                 s.getLandingHeroBadge(),
                 s.getLandingHeroTitle(),

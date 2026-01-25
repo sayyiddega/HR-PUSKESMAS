@@ -9,6 +9,7 @@ export interface AppSettings {
   phone?: string;
   websiteBaseUrl?: string;
   logoUrl?: string;
+  landingHeroImageUrl?: string;
 
   // Landing page configurable texts
   landingHeroBadge?: string;
@@ -71,5 +72,11 @@ export const settingsApi = {
     const formData = new FormData();
     formData.append('file', file);
     return apiClient.postFormData<AppSettings>('/admin/settings/logo', formData);
+  },
+
+  uploadLandingImage: async (file: File): Promise<AppSettings> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return apiClient.postFormData<AppSettings>('/admin/settings/landing-image', formData);
   },
 };

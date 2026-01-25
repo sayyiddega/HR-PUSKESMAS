@@ -54,6 +54,9 @@ public class AppSetting {
     @Column(name = "landing_footer_text", length = 1000)
     private String landingFooterText;
 
+    @Column(name = "landing_hero_image_path", length = 500)
+    private String landingHeroImagePath;
+
     @Column(nullable = false)
     private Instant updatedAt = Instant.now();
 
@@ -179,6 +182,14 @@ public class AppSetting {
 
     public void setLandingFooterText(String landingFooterText) {
         this.landingFooterText = landingFooterText;
+    }
+
+    public String getLandingHeroImagePath() {
+        return landingHeroImagePath;
+    }
+
+    public void setLandingHeroImagePath(String landingHeroImagePath) {
+        this.landingHeroImagePath = landingHeroImagePath;
     }
 
     public Instant getUpdatedAt() {

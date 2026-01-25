@@ -55,6 +55,13 @@ public class AppSettingService {
         return Objects.requireNonNull(repository.save(s), "Failed to update settings logo");
     }
 
+    @Transactional
+    public AppSetting updateLandingImagePath(String path) {
+        AppSetting s = getOrCreate();
+        s.setLandingHeroImagePath(path);
+        return Objects.requireNonNull(repository.save(s), "Failed to update settings landing image");
+    }
+
     private String trimTrailingSlash(String url) {
         if (url == null) return null;
         String t = url.trim();
