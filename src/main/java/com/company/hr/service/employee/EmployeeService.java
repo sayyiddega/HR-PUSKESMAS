@@ -154,6 +154,14 @@ public class EmployeeService {
         if (req.remainingLeaveDays() != null) {
             emp.setRemainingLeaveDays(req.remainingLeaveDays());
         }
+        // Admin ganti password pegawai (opsional)
+        if (req.password() != null && !req.password().isBlank()) {
+            var user = emp.getUserAccount();
+            if (user != null) {
+                user.setPasswordHash(passwordEncoder.encode(req.password()));
+                userAccountRepository.save(user);
+            }
+        }
         return employeeRepository.save(emp);
     }
 

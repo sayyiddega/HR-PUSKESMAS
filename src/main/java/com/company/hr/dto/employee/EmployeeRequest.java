@@ -42,7 +42,10 @@ public record EmployeeRequest(
         Integer tahunLulusPendidikan,
         @Size(max = 2000) String catatanMutasi,
         @Size(max = 100) String karpeg,
-        @Size(max = 2000) String keterangan
+        @Size(max = 2000) String keterangan,
+
+        // Optional: admin ganti password pegawai (kosong = tidak ganti)
+        @Size(min = 8, max = 72) String password
 ) {
 }
 

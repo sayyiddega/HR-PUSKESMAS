@@ -96,6 +96,9 @@ export interface EmployeeUpdateRequest {
 
   remainingLeaveDays?: number;
 
+  /** Admin: ganti password pegawai (kosongkan = tidak ganti). Min 8, max 72 karakter. */
+  password?: string;
+
   // Enriched biodata (optional)
   nip?: string;
   nik?: string;

@@ -116,8 +116,9 @@ const MasterKaryawan: React.FC = () => {
     
     if (editingUser) {
       userToSave = { ...editingUser, ...formData };
-      if (!formData.password) {
-        userToSave.password = editingUser.password;
+      // Password: kirim ke backend hanya jika admin isi field baru (untuk ganti password)
+      if (!formData.password || !formData.password.trim()) {
+        delete userToSave.password;
       }
       userToSave.remainingLeaveDays = formData.remainingLeaveDays
         ? parseInt(formData.remainingLeaveDays, 10)

@@ -110,7 +110,7 @@ export const getUsers = async (page = 1, size = 10): Promise<PagedResult<User>> 
 export const saveUser = async (data: Partial<User>): Promise<void> => {
   if (data.id) {
     // Update existing
-    await EmployeeApi.employeeApi.update(parseInt(data.id), {
+    const updatePayload: Parameters<typeof EmployeeApi.employeeApi.update>[1] = {
       fullName: data.fullName || '',
       position: data.position,
       department: data.department,
@@ -142,7 +142,12 @@ export const saveUser = async (data: Partial<User>): Promise<void> => {
       catatanMutasi: data.catatanMutasi,
       karpeg: data.karpeg,
       keterangan: data.keterangan,
-    });
+    };
+    // Admin ganti password: kirim hanya jika diisi (min 8 karakter)
+    if (data.password != null && data.password.trim().length >= 8) {
+      updatePayload.password = data.password.trim();
+    }
+    await EmployeeApi.employeeApi.update(parseInt(data.id), updatePayload);
   } else {
     // Create new
     if (!data.username || !data.password) {
