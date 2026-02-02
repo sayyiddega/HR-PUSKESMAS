@@ -26,7 +26,23 @@ public record EmployeeRequest(
         @Size(max = 30) String employmentStatus,
 
         // Remaining leave days (admin-only, diabaikan untuk update self)
-        Integer remainingLeaveDays
+        Integer remainingLeaveDays,
+
+        // Extended ASN/PNS (optional)
+        @Size(max = 50) String tmtPangkatGolRuang,
+        LocalDate tmtJabatan,
+        LocalDate tmtCpns,
+        LocalDate tmtPns,
+        @Size(max = 50) String masaKerja,
+        @Size(max = 200) String namaLatihanJabatan,
+        LocalDate tanggalLatihanJabatan,
+        @Size(max = 30) String lamaJam,
+        @Size(max = 200) String namaFakultasPendidikanTerakhir,
+        @Size(max = 200) String jurusanPendidikanTerakhir,
+        Integer tahunLulusPendidikan,
+        @Size(max = 2000) String catatanMutasi,
+        @Size(max = 100) String karpeg,
+        @Size(max = 2000) String keterangan
 ) {
 }
 

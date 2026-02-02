@@ -27,6 +27,21 @@ export interface Employee {
   lastEducation?: string;
   rankGolongan?: string;
   employmentStatus?: string;
+  // Extended ASN/PNS
+  tmtPangkatGolRuang?: string;
+  tmtJabatan?: string;
+  tmtCpns?: string;
+  tmtPns?: string;
+  masaKerja?: string;
+  namaLatihanJabatan?: string;
+  tanggalLatihanJabatan?: string;
+  lamaJam?: string;
+  namaFakultasPendidikanTerakhir?: string;
+  jurusanPendidikanTerakhir?: string;
+  tahunLulusPendidikan?: number;
+  catatanMutasi?: string;
+  karpeg?: string;
+  keterangan?: string;
 }
 
 export interface EmployeeCreateRequest {
@@ -53,6 +68,21 @@ export interface EmployeeCreateRequest {
   lastEducation?: string;
   rankGolongan?: string;
   employmentStatus?: string;
+  // Extended ASN/PNS (optional)
+  tmtPangkatGolRuang?: string;
+  tmtJabatan?: string;
+  tmtCpns?: string;
+  tmtPns?: string;
+  masaKerja?: string;
+  namaLatihanJabatan?: string;
+  tanggalLatihanJabatan?: string;
+  lamaJam?: string;
+  namaFakultasPendidikanTerakhir?: string;
+  jurusanPendidikanTerakhir?: string;
+  tahunLulusPendidikan?: number;
+  catatanMutasi?: string;
+  karpeg?: string;
+  keterangan?: string;
 }
 
 export interface EmployeeUpdateRequest {
@@ -76,6 +106,21 @@ export interface EmployeeUpdateRequest {
   lastEducation?: string;
   rankGolongan?: string;
   employmentStatus?: string;
+  // Extended ASN/PNS (optional)
+  tmtPangkatGolRuang?: string;
+  tmtJabatan?: string;
+  tmtCpns?: string;
+  tmtPns?: string;
+  masaKerja?: string;
+  namaLatihanJabatan?: string;
+  tanggalLatihanJabatan?: string;
+  lamaJam?: string;
+  namaFakultasPendidikanTerakhir?: string;
+  jurusanPendidikanTerakhir?: string;
+  tahunLulusPendidikan?: number;
+  catatanMutasi?: string;
+  karpeg?: string;
+  keterangan?: string;
 }
 
 export interface ChangePasswordRequest {

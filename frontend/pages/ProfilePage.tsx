@@ -22,8 +22,26 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
   const [lastEducation, setLastEducation] = useState(user.lastEducation || '');
   const [rankGolongan, setRankGolongan] = useState(user.rankGolongan || '');
   const [employmentStatus, setEmploymentStatus] = useState(user.employmentStatus || '');
+  // Extended ASN/PNS
+  const [tmtPangkatGolRuang, setTmtPangkatGolRuang] = useState(user.tmtPangkatGolRuang || '');
+  const [tmtJabatan, setTmtJabatan] = useState(user.tmtJabatan || '');
+  const [tmtCpns, setTmtCpns] = useState(user.tmtCpns || '');
+  const [tmtPns, setTmtPns] = useState(user.tmtPns || '');
+  const [masaKerja, setMasaKerja] = useState(user.masaKerja || '');
+  const [namaLatihanJabatan, setNamaLatihanJabatan] = useState(user.namaLatihanJabatan || '');
+  const [tanggalLatihanJabatan, setTanggalLatihanJabatan] = useState(user.tanggalLatihanJabatan || '');
+  const [lamaJam, setLamaJam] = useState(user.lamaJam || '');
+  const [namaFakultasPendidikanTerakhir, setNamaFakultasPendidikanTerakhir] = useState(user.namaFakultasPendidikanTerakhir || '');
+  const [jurusanPendidikanTerakhir, setJurusanPendidikanTerakhir] = useState(user.jurusanPendidikanTerakhir || '');
+  const [tahunLulusPendidikan, setTahunLulusPendidikan] = useState(user.tahunLulusPendidikan !== undefined ? String(user.tahunLulusPendidikan) : '');
+  const [catatanMutasi, setCatatanMutasi] = useState(user.catatanMutasi || '');
+  const [karpeg, setKarpeg] = useState(user.karpeg || '');
+  const [keterangan, setKeterangan] = useState(user.keterangan || '');
   const [newPassword, setNewPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const PASSWORD_MIN = 8;
+  const PASSWORD_MAX = 72;
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
   const [profilePhotoUrl, setProfilePhotoUrl] = useState(user.profilePhotoUrl);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -31,6 +49,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    const didChangePassword = newPassword.trim().length > 0;
     try {
       // Update profile
       await EmployeeApi.employeeApi.updateProfile({
@@ -50,12 +69,26 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
         lastEducation,
         rankGolongan,
         employmentStatus,
+        tmtPangkatGolRuang: tmtPangkatGolRuang || undefined,
+        tmtJabatan: tmtJabatan || undefined,
+        tmtCpns: tmtCpns || undefined,
+        tmtPns: tmtPns || undefined,
+        masaKerja: masaKerja || undefined,
+        namaLatihanJabatan: namaLatihanJabatan || undefined,
+        tanggalLatihanJabatan: tanggalLatihanJabatan || undefined,
+        lamaJam: lamaJam || undefined,
+        namaFakultasPendidikanTerakhir: namaFakultasPendidikanTerakhir || undefined,
+        jurusanPendidikanTerakhir: jurusanPendidikanTerakhir || undefined,
+        tahunLulusPendidikan: tahunLulusPendidikan ? parseInt(tahunLulusPendidikan, 10) : undefined,
+        catatanMutasi: catatanMutasi || undefined,
+        karpeg: karpeg || undefined,
+        keterangan: keterangan || undefined,
         // remainingLeaveDays sengaja TIDAK dikirim dari sisi pegawai
       });
 
       // Update password if provided
-      if (newPassword) {
-        await EmployeeApi.employeeApi.changePassword({ newPassword });
+      if (newPassword.trim()) {
+        await EmployeeApi.employeeApi.changePassword({ newPassword: newPassword.trim() });
       }
 
       // Reload profile to get updated data
@@ -80,6 +113,20 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
         rankGolongan: updatedProfile.rankGolongan,
         employmentStatus: updatedProfile.employmentStatus,
         remainingLeaveDays: updatedProfile.remainingLeaveDays,
+        tmtPangkatGolRuang: updatedProfile.tmtPangkatGolRuang,
+        tmtJabatan: updatedProfile.tmtJabatan,
+        tmtCpns: updatedProfile.tmtCpns,
+        tmtPns: updatedProfile.tmtPns,
+        masaKerja: updatedProfile.masaKerja,
+        namaLatihanJabatan: updatedProfile.namaLatihanJabatan,
+        tanggalLatihanJabatan: updatedProfile.tanggalLatihanJabatan,
+        lamaJam: updatedProfile.lamaJam,
+        namaFakultasPendidikanTerakhir: updatedProfile.namaFakultasPendidikanTerakhir,
+        jurusanPendidikanTerakhir: updatedProfile.jurusanPendidikanTerakhir,
+        tahunLulusPendidikan: updatedProfile.tahunLulusPendidikan,
+        catatanMutasi: updatedProfile.catatanMutasi,
+        karpeg: updatedProfile.karpeg,
+        keterangan: updatedProfile.keterangan,
       };
 
       onUpdate(updatedUser);
@@ -93,10 +140,27 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
       setLastEducation(updatedProfile.lastEducation || '');
       setRankGolongan(updatedProfile.rankGolongan || '');
       setEmploymentStatus(updatedProfile.employmentStatus || '');
+      setTmtPangkatGolRuang(updatedProfile.tmtPangkatGolRuang || '');
+      setTmtJabatan(updatedProfile.tmtJabatan || '');
+      setTmtCpns(updatedProfile.tmtCpns || '');
+      setTmtPns(updatedProfile.tmtPns || '');
+      setMasaKerja(updatedProfile.masaKerja || '');
+      setNamaLatihanJabatan(updatedProfile.namaLatihanJabatan || '');
+      setTanggalLatihanJabatan(updatedProfile.tanggalLatihanJabatan || '');
+      setLamaJam(updatedProfile.lamaJam || '');
+      setNamaFakultasPendidikanTerakhir(updatedProfile.namaFakultasPendidikanTerakhir || '');
+      setJurusanPendidikanTerakhir(updatedProfile.jurusanPendidikanTerakhir || '');
+      setTahunLulusPendidikan(updatedProfile.tahunLulusPendidikan !== undefined ? String(updatedProfile.tahunLulusPendidikan) : '');
+      setCatatanMutasi(updatedProfile.catatanMutasi || '');
+      setKarpeg(updatedProfile.karpeg || '');
+      setKeterangan(updatedProfile.keterangan || '');
       setNewPassword('');
-      showNotification('Profil berhasil diperbarui!', 'success');
+      setPasswordError('');
+      showNotification(didChangePassword ? 'Profil dan kata sandi berhasil diperbarui!' : 'Profil berhasil diperbarui!', 'success');
     } catch (err: any) {
-      showNotification(`Gagal memperbarui profil: ${err.message}`, 'error');
+      const msg = err?.message || 'Gagal memperbarui';
+      setPasswordError(msg.includes('password') || msg.includes('Password') || msg.includes('kata sandi') ? msg : '');
+      showNotification(`Gagal memperbarui: ${msg}`, 'error');
     } finally {
       setIsSubmitting(false);
     }
@@ -363,19 +427,57 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
               </div>
             </div>
 
+            {/* Extended ASN/PNS */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT Pangkat/Gol/Ruang</label>
+                <input type="text" value={tmtPangkatGolRuang} onChange={(e) => setTmtPangkatGolRuang(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" />
+              </div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT Jabatan</label><input type="date" value={tmtJabatan} onChange={(e) => setTmtJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT CPNS</label><input type="date" value={tmtCpns} onChange={(e) => setTmtCpns(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT PNS</label><input type="date" value={tmtPns} onChange={(e) => setTmtPns(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Masa Kerja</label><input type="text" value={masaKerja} onChange={(e) => setMasaKerja(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Nama Latihan Jabatan</label><input type="text" value={namaLatihanJabatan} onChange={(e) => setNamaLatihanJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Tanggal Latihan Jabatan</label><input type="date" value={tanggalLatihanJabatan} onChange={(e) => setTanggalLatihanJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Lama (Jam)</label><input type="text" value={lamaJam} onChange={(e) => setLamaJam(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Fakultas Pendidikan Terakhir</label><input type="text" value={namaFakultasPendidikanTerakhir} onChange={(e) => setNamaFakultasPendidikanTerakhir(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Jurusan Pendidikan Terakhir</label><input type="text" value={jurusanPendidikanTerakhir} onChange={(e) => setJurusanPendidikanTerakhir(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Tahun Lulus Pendidikan</label><input type="number" value={tahunLulusPendidikan} onChange={(e) => setTahunLulusPendidikan(e.target.value)} placeholder="Contoh: 2015" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Karpeg</label><input type="text" value={karpeg} onChange={(e) => setKarpeg(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Catatan Mutasi</label>
+              <textarea rows={2} value={catatanMutasi} onChange={(e) => setCatatanMutasi(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Keterangan</label>
+              <textarea rows={2} value={keterangan} onChange={(e) => setKeterangan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" />
+            </div>
+
             <hr className="border-slate-50 my-8" />
 
             <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
               <h3 className="text-xs font-black text-blue-800 uppercase tracking-widest mb-4">Ganti Kata Sandi</h3>
+              <p className="text-xs text-blue-700/80 mb-3">
+                Kosongkan jika tidak ingin ganti. Format: minimal {PASSWORD_MIN} karakter, maksimal {PASSWORD_MAX} karakter.
+              </p>
               <div>
-                <label className="block text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-2 ml-1">Password Baru (Kosongkan jika tidak ingin ganti)</label>
+                <label className="block text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-2 ml-1">Password Baru</label>
                 <input 
                   type="password" 
                   value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full px-5 py-4 bg-white border border-blue-100 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                  onChange={(e) => { setNewPassword(e.target.value); setPasswordError(''); }}
+                  placeholder="Min. 8 karakter, maks. 72 karakter"
+                  minLength={PASSWORD_MIN}
+                  maxLength={PASSWORD_MAX}
+                  className={`w-full px-5 py-4 bg-white border rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all ${passwordError ? 'border-red-300' : 'border-blue-100'}`}
                 />
+                {passwordError && (
+                  <p className="mt-2 text-sm text-red-600 flex items-center gap-2">
+                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    {passwordError}
+                  </p>
+                )}
               </div>
             </div>
 

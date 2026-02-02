@@ -96,7 +96,21 @@ public class EmployeeService {
                 req.religion(),
                 req.lastEducation(),
                 req.rankGolongan(),
-                req.employmentStatus()
+                req.employmentStatus(),
+                req.tmtPangkatGolRuang(),
+                req.tmtJabatan(),
+                req.tmtCpns(),
+                req.tmtPns(),
+                req.masaKerja(),
+                req.namaLatihanJabatan(),
+                req.tanggalLatihanJabatan(),
+                req.lamaJam(),
+                req.namaFakultasPendidikanTerakhir(),
+                req.jurusanPendidikanTerakhir(),
+                req.tahunLulusPendidikan(),
+                req.catatanMutasi(),
+                req.karpeg(),
+                req.keterangan()
         );
         employee.setRemainingLeaveDays(req.remainingLeaveDays());
         return employeeRepository.save(employee);
@@ -121,7 +135,21 @@ public class EmployeeService {
                 req.religion() != null ? req.religion() : emp.getReligion(),
                 req.lastEducation() != null ? req.lastEducation() : emp.getLastEducation(),
                 req.rankGolongan() != null ? req.rankGolongan() : emp.getRankGolongan(),
-                req.employmentStatus() != null ? req.employmentStatus() : emp.getEmploymentStatus()
+                req.employmentStatus() != null ? req.employmentStatus() : emp.getEmploymentStatus(),
+                req.tmtPangkatGolRuang() != null ? req.tmtPangkatGolRuang() : emp.getTmtPangkatGolRuang(),
+                req.tmtJabatan() != null ? req.tmtJabatan() : emp.getTmtJabatan(),
+                req.tmtCpns() != null ? req.tmtCpns() : emp.getTmtCpns(),
+                req.tmtPns() != null ? req.tmtPns() : emp.getTmtPns(),
+                req.masaKerja() != null ? req.masaKerja() : emp.getMasaKerja(),
+                req.namaLatihanJabatan() != null ? req.namaLatihanJabatan() : emp.getNamaLatihanJabatan(),
+                req.tanggalLatihanJabatan() != null ? req.tanggalLatihanJabatan() : emp.getTanggalLatihanJabatan(),
+                req.lamaJam() != null ? req.lamaJam() : emp.getLamaJam(),
+                req.namaFakultasPendidikanTerakhir() != null ? req.namaFakultasPendidikanTerakhir() : emp.getNamaFakultasPendidikanTerakhir(),
+                req.jurusanPendidikanTerakhir() != null ? req.jurusanPendidikanTerakhir() : emp.getJurusanPendidikanTerakhir(),
+                req.tahunLulusPendidikan() != null ? req.tahunLulusPendidikan() : emp.getTahunLulusPendidikan(),
+                req.catatanMutasi() != null ? req.catatanMutasi() : emp.getCatatanMutasi(),
+                req.karpeg() != null ? req.karpeg() : emp.getKarpeg(),
+                req.keterangan() != null ? req.keterangan() : emp.getKeterangan()
         );
         if (req.remainingLeaveDays() != null) {
             emp.setRemainingLeaveDays(req.remainingLeaveDays());
@@ -158,7 +186,21 @@ public class EmployeeService {
                 req.religion() != null ? req.religion() : emp.getReligion(),
                 req.lastEducation() != null ? req.lastEducation() : emp.getLastEducation(),
                 req.rankGolongan() != null ? req.rankGolongan() : emp.getRankGolongan(),
-                req.employmentStatus() != null ? req.employmentStatus() : emp.getEmploymentStatus()
+                req.employmentStatus() != null ? req.employmentStatus() : emp.getEmploymentStatus(),
+                req.tmtPangkatGolRuang() != null ? req.tmtPangkatGolRuang() : emp.getTmtPangkatGolRuang(),
+                req.tmtJabatan() != null ? req.tmtJabatan() : emp.getTmtJabatan(),
+                req.tmtCpns() != null ? req.tmtCpns() : emp.getTmtCpns(),
+                req.tmtPns() != null ? req.tmtPns() : emp.getTmtPns(),
+                req.masaKerja() != null ? req.masaKerja() : emp.getMasaKerja(),
+                req.namaLatihanJabatan() != null ? req.namaLatihanJabatan() : emp.getNamaLatihanJabatan(),
+                req.tanggalLatihanJabatan() != null ? req.tanggalLatihanJabatan() : emp.getTanggalLatihanJabatan(),
+                req.lamaJam() != null ? req.lamaJam() : emp.getLamaJam(),
+                req.namaFakultasPendidikanTerakhir() != null ? req.namaFakultasPendidikanTerakhir() : emp.getNamaFakultasPendidikanTerakhir(),
+                req.jurusanPendidikanTerakhir() != null ? req.jurusanPendidikanTerakhir() : emp.getJurusanPendidikanTerakhir(),
+                req.tahunLulusPendidikan() != null ? req.tahunLulusPendidikan() : emp.getTahunLulusPendidikan(),
+                req.catatanMutasi() != null ? req.catatanMutasi() : emp.getCatatanMutasi(),
+                req.karpeg() != null ? req.karpeg() : emp.getKarpeg(),
+                req.keterangan() != null ? req.keterangan() : emp.getKeterangan()
         );
         return employeeRepository.save(emp);
     }

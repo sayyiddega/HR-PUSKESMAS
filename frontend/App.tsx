@@ -233,7 +233,7 @@ const App: React.FC = () => {
     <Router>
       <div className="min-h-screen bg-slate-50 flex">
         {user && <Sidebar user={user} logout={logout} settings={settings} unreadCount={unreadCount} />}
-        <main className="flex-1 flex flex-col overflow-auto relative">
+        <main className="flex-1 flex flex-col min-h-0 overflow-y-auto overflow-x-hidden relative">
           <Routes>
             <Route path="/landing" element={<LandingPage settings={settings} />} />
             <Route path="/login" element={user ? <Navigate to="/" /> : <LoginPage onLogin={login} settings={settings} />} />

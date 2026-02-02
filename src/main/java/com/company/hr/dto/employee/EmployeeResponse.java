@@ -27,7 +27,23 @@ public record EmployeeResponse(
         String lastEducation,
         String rankGolongan,
         String employmentStatus,
-        Integer remainingLeaveDays
+        Integer remainingLeaveDays,
+
+        // Extended ASN/PNS fields
+        String tmtPangkatGolRuang,
+        LocalDate tmtJabatan,
+        LocalDate tmtCpns,
+        LocalDate tmtPns,
+        String masaKerja,
+        String namaLatihanJabatan,
+        LocalDate tanggalLatihanJabatan,
+        String lamaJam,
+        String namaFakultasPendidikanTerakhir,
+        String jurusanPendidikanTerakhir,
+        Integer tahunLulusPendidikan,
+        String catatanMutasi,
+        String karpeg,
+        String keterangan
 ) {
     public static EmployeeResponse from(Employee e) {
         return new EmployeeResponse(
@@ -51,7 +67,21 @@ public record EmployeeResponse(
                 e.getLastEducation(),
                 e.getRankGolongan(),
                 e.getEmploymentStatus(),
-                e.getRemainingLeaveDays()
+                e.getRemainingLeaveDays(),
+                e.getTmtPangkatGolRuang(),
+                e.getTmtJabatan(),
+                e.getTmtCpns(),
+                e.getTmtPns(),
+                e.getMasaKerja(),
+                e.getNamaLatihanJabatan(),
+                e.getTanggalLatihanJabatan(),
+                e.getLamaJam(),
+                e.getNamaFakultasPendidikanTerakhir(),
+                e.getJurusanPendidikanTerakhir(),
+                e.getTahunLulusPendidikan(),
+                e.getCatatanMutasi(),
+                e.getKarpeg(),
+                e.getKeterangan()
         );
     }
 
@@ -77,7 +107,21 @@ public record EmployeeResponse(
                 e.getLastEducation(),
                 e.getRankGolongan(),
                 e.getEmploymentStatus(),
-                e.getRemainingLeaveDays()
+                e.getRemainingLeaveDays(),
+                e.getTmtPangkatGolRuang(),
+                e.getTmtJabatan(),
+                e.getTmtCpns(),
+                e.getTmtPns(),
+                e.getMasaKerja(),
+                e.getNamaLatihanJabatan(),
+                e.getTanggalLatihanJabatan(),
+                e.getLamaJam(),
+                e.getNamaFakultasPendidikanTerakhir(),
+                e.getJurusanPendidikanTerakhir(),
+                e.getTahunLulusPendidikan(),
+                e.getCatatanMutasi(),
+                e.getKarpeg(),
+                e.getKeterangan()
         );
     }
 }

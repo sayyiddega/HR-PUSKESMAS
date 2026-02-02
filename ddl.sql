@@ -62,6 +62,22 @@ ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS employment_status VA
 -- Delta: Remaining leave days (sisa cuti per pegawai, dalam hari)
 ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS remaining_leave_days INTEGER;
 
+-- Delta: Extended ASN/PNS fields (pegawai)
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS tmt_pangkat_gol_ruang VARCHAR(50);
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS tmt_jabatan DATE;
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS tmt_cpns DATE;
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS tmt_pns DATE;
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS masa_kerja VARCHAR(50);
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS nama_latihan_jabatan VARCHAR(200);
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS tanggal_latihan_jabatan DATE;
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS lama_jam VARCHAR(30);
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS nama_fakultas_pendidikan_terakhir VARCHAR(200);
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS jurusan_pendidikan_terakhir VARCHAR(200);
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS tahun_lulus_pendidikan INTEGER;
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS catatan_mutasi VARCHAR(2000);
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS karpeg VARCHAR(100);
+ALTER TABLE hr_puskesmas.employees ADD COLUMN IF NOT EXISTS keterangan VARCHAR(2000);
+
 -- ============================================
 -- Internal Messages Table (delta update)
 -- ============================================

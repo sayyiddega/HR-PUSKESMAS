@@ -166,6 +166,20 @@ export const generateEmployeeDocumentPDF = async (
     if (typeof data.employee.remainingLeaveDays === 'number') {
       addLine('Sisa Cuti (hari)', data.employee.remainingLeaveDays);
     }
+    addLine('TMT Pangkat/Gol/Ruang', data.employee.tmtPangkatGolRuang);
+    if (data.employee.tmtJabatan) addLine('TMT Jabatan', typeof data.employee.tmtJabatan === 'string' ? new Date(data.employee.tmtJabatan).toLocaleDateString('id-ID') : data.employee.tmtJabatan);
+    if (data.employee.tmtCpns) addLine('TMT CPNS', typeof data.employee.tmtCpns === 'string' ? new Date(data.employee.tmtCpns).toLocaleDateString('id-ID') : data.employee.tmtCpns);
+    if (data.employee.tmtPns) addLine('TMT PNS', typeof data.employee.tmtPns === 'string' ? new Date(data.employee.tmtPns).toLocaleDateString('id-ID') : data.employee.tmtPns);
+    addLine('Masa Kerja', data.employee.masaKerja);
+    addLine('Nama Latihan Jabatan', data.employee.namaLatihanJabatan);
+    if (data.employee.tanggalLatihanJabatan) addLine('Tanggal Latihan Jabatan', typeof data.employee.tanggalLatihanJabatan === 'string' ? new Date(data.employee.tanggalLatihanJabatan).toLocaleDateString('id-ID') : data.employee.tanggalLatihanJabatan);
+    addLine('Lama (Jam)', data.employee.lamaJam);
+    addLine('Fakultas Pendidikan Terakhir', data.employee.namaFakultasPendidikanTerakhir);
+    addLine('Jurusan Pendidikan Terakhir', data.employee.jurusanPendidikanTerakhir);
+    if (data.employee.tahunLulusPendidikan != null) addLine('Tahun Lulus Pendidikan', data.employee.tahunLulusPendidikan);
+    addLine('Catatan Mutasi', data.employee.catatanMutasi);
+    addLine('Karpeg', data.employee.karpeg);
+    addLine('Keterangan', data.employee.keterangan);
 
     yPos += 5;
   };

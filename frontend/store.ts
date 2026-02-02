@@ -128,6 +128,20 @@ export const saveUser = async (data: Partial<User>): Promise<void> => {
       lastEducation: data.lastEducation,
       rankGolongan: data.rankGolongan,
       employmentStatus: data.employmentStatus,
+      tmtPangkatGolRuang: data.tmtPangkatGolRuang,
+      tmtJabatan: data.tmtJabatan,
+      tmtCpns: data.tmtCpns,
+      tmtPns: data.tmtPns,
+      masaKerja: data.masaKerja,
+      namaLatihanJabatan: data.namaLatihanJabatan,
+      tanggalLatihanJabatan: data.tanggalLatihanJabatan,
+      lamaJam: data.lamaJam,
+      namaFakultasPendidikanTerakhir: data.namaFakultasPendidikanTerakhir,
+      jurusanPendidikanTerakhir: data.jurusanPendidikanTerakhir,
+      tahunLulusPendidikan: data.tahunLulusPendidikan,
+      catatanMutasi: data.catatanMutasi,
+      karpeg: data.karpeg,
+      keterangan: data.keterangan,
     });
   } else {
     // Create new
@@ -155,6 +169,20 @@ export const saveUser = async (data: Partial<User>): Promise<void> => {
       lastEducation: data.lastEducation,
       rankGolongan: data.rankGolongan,
       employmentStatus: data.employmentStatus,
+      tmtPangkatGolRuang: data.tmtPangkatGolRuang,
+      tmtJabatan: data.tmtJabatan,
+      tmtCpns: data.tmtCpns,
+      tmtPns: data.tmtPns,
+      masaKerja: data.masaKerja,
+      namaLatihanJabatan: data.namaLatihanJabatan,
+      tanggalLatihanJabatan: data.tanggalLatihanJabatan,
+      lamaJam: data.lamaJam,
+      namaFakultasPendidikanTerakhir: data.namaFakultasPendidikanTerakhir,
+      jurusanPendidikanTerakhir: data.jurusanPendidikanTerakhir,
+      tahunLulusPendidikan: data.tahunLulusPendidikan,
+      catatanMutasi: data.catatanMutasi,
+      karpeg: data.karpeg,
+      keterangan: data.keterangan,
     });
   }
 };

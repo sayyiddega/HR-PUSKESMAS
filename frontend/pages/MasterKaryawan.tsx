@@ -75,7 +75,21 @@ const MasterKaryawan: React.FC = () => {
     lastEducation: '',
     rankGolongan: '',
     employmentStatus: '',
-    remainingLeaveDays: ''
+    remainingLeaveDays: '',
+    tmtPangkatGolRuang: '',
+    tmtJabatan: '',
+    tmtCpns: '',
+    tmtPns: '',
+    masaKerja: '',
+    namaLatihanJabatan: '',
+    tanggalLatihanJabatan: '',
+    lamaJam: '',
+    namaFakultasPendidikanTerakhir: '',
+    jurusanPendidikanTerakhir: '',
+    tahunLulusPendidikan: '',
+    catatanMutasi: '',
+    karpeg: '',
+    keterangan: ''
   });
 
   const filteredUsers = useMemo(() => {
@@ -123,6 +137,29 @@ const MasterKaryawan: React.FC = () => {
         remainingLeaveDays: formData.remainingLeaveDays
           ? parseInt(formData.remainingLeaveDays, 10)
           : undefined,
+        nip: formData.nip || undefined,
+        nik: formData.nik || undefined,
+        gender: formData.gender || undefined,
+        placeOfBirth: formData.placeOfBirth || undefined,
+        maritalStatus: formData.maritalStatus || undefined,
+        religion: formData.religion || undefined,
+        lastEducation: formData.lastEducation || undefined,
+        rankGolongan: formData.rankGolongan || undefined,
+        employmentStatus: formData.employmentStatus || undefined,
+        tmtPangkatGolRuang: formData.tmtPangkatGolRuang || undefined,
+        tmtJabatan: formData.tmtJabatan || undefined,
+        tmtCpns: formData.tmtCpns || undefined,
+        tmtPns: formData.tmtPns || undefined,
+        masaKerja: formData.masaKerja || undefined,
+        namaLatihanJabatan: formData.namaLatihanJabatan || undefined,
+        tanggalLatihanJabatan: formData.tanggalLatihanJabatan || undefined,
+        lamaJam: formData.lamaJam || undefined,
+        namaFakultasPendidikanTerakhir: formData.namaFakultasPendidikanTerakhir || undefined,
+        jurusanPendidikanTerakhir: formData.jurusanPendidikanTerakhir || undefined,
+        tahunLulusPendidikan: formData.tahunLulusPendidikan ? parseInt(formData.tahunLulusPendidikan, 10) : undefined,
+        catatanMutasi: formData.catatanMutasi || undefined,
+        karpeg: formData.karpeg || undefined,
+        keterangan: formData.keterangan || undefined,
         status: 'Aktif' as const,
         documents: []
       };
@@ -171,7 +208,21 @@ const MasterKaryawan: React.FC = () => {
         employmentStatus: user.employmentStatus || '',
         remainingLeaveDays: user.remainingLeaveDays !== undefined && user.remainingLeaveDays !== null
           ? String(user.remainingLeaveDays)
-          : ''
+          : '',
+        tmtPangkatGolRuang: user.tmtPangkatGolRuang || '',
+        tmtJabatan: user.tmtJabatan || '',
+        tmtCpns: user.tmtCpns || '',
+        tmtPns: user.tmtPns || '',
+        masaKerja: user.masaKerja || '',
+        namaLatihanJabatan: user.namaLatihanJabatan || '',
+        tanggalLatihanJabatan: user.tanggalLatihanJabatan || '',
+        lamaJam: user.lamaJam || '',
+        namaFakultasPendidikanTerakhir: user.namaFakultasPendidikanTerakhir || '',
+        jurusanPendidikanTerakhir: user.jurusanPendidikanTerakhir || '',
+        tahunLulusPendidikan: user.tahunLulusPendidikan !== undefined ? String(user.tahunLulusPendidikan) : '',
+        catatanMutasi: user.catatanMutasi || '',
+        karpeg: user.karpeg || '',
+        keterangan: user.keterangan || ''
       });
     } else {
       setEditingUser(null);
@@ -194,7 +245,21 @@ const MasterKaryawan: React.FC = () => {
         lastEducation: '',
         rankGolongan: '',
         employmentStatus: '',
-        remainingLeaveDays: ''
+        remainingLeaveDays: '',
+        tmtPangkatGolRuang: '',
+        tmtJabatan: '',
+        tmtCpns: '',
+        tmtPns: '',
+        masaKerja: '',
+        namaLatihanJabatan: '',
+        tanggalLatihanJabatan: '',
+        lamaJam: '',
+        namaFakultasPendidikanTerakhir: '',
+        jurusanPendidikanTerakhir: '',
+        tahunLulusPendidikan: '',
+        catatanMutasi: '',
+        karpeg: '',
+        keterangan: ''
       });
     }
     setIsModalOpen(true);
@@ -535,6 +600,25 @@ const MasterKaryawan: React.FC = () => {
                   />
                 </div>
               </div>
+
+              <hr className="border-slate-50 my-4" />
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 ml-1">Data ASN/PNS (opsional)</p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT Pangkat/Gol/Ruang</label><input type="text" value={formData.tmtPangkatGolRuang} onChange={(e) => setFormData({ ...formData, tmtPangkatGolRuang: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT Jabatan</label><input type="date" value={formData.tmtJabatan} onChange={(e) => setFormData({ ...formData, tmtJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT CPNS</label><input type="date" value={formData.tmtCpns} onChange={(e) => setFormData({ ...formData, tmtCpns: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT PNS</label><input type="date" value={formData.tmtPns} onChange={(e) => setFormData({ ...formData, tmtPns: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Masa Kerja</label><input type="text" value={formData.masaKerja} onChange={(e) => setFormData({ ...formData, masaKerja: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Nama Latihan Jabatan</label><input type="text" value={formData.namaLatihanJabatan} onChange={(e) => setFormData({ ...formData, namaLatihanJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Tanggal Latihan Jabatan</label><input type="date" value={formData.tanggalLatihanJabatan} onChange={(e) => setFormData({ ...formData, tanggalLatihanJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Lama (Jam)</label><input type="text" value={formData.lamaJam} onChange={(e) => setFormData({ ...formData, lamaJam: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Fakultas Pendidikan Terakhir</label><input type="text" value={formData.namaFakultasPendidikanTerakhir} onChange={(e) => setFormData({ ...formData, namaFakultasPendidikanTerakhir: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Jurusan Pendidikan Terakhir</label><input type="text" value={formData.jurusanPendidikanTerakhir} onChange={(e) => setFormData({ ...formData, jurusanPendidikanTerakhir: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Tahun Lulus</label><input type="number" value={formData.tahunLulusPendidikan} onChange={(e) => setFormData({ ...formData, tahunLulusPendidikan: e.target.value })} placeholder="2015" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Karpeg</label><input type="text" value={formData.karpeg} onChange={(e) => setFormData({ ...formData, karpeg: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div className="md:col-span-2"><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Catatan Mutasi</label><textarea rows={2} value={formData.catatanMutasi} onChange={(e) => setFormData({ ...formData, catatanMutasi: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div className="md:col-span-2"><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Keterangan</label><textarea rows={2} value={formData.keterangan} onChange={(e) => setFormData({ ...formData, keterangan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              </div>
             </div>
 
             <div className="pt-4 px-8 pb-8 flex gap-4 border-t border-slate-100">
@@ -558,7 +642,8 @@ const MasterKaryawan: React.FC = () => {
 
       {/* Table */}
       <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
-        <table className="w-full text-left">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left min-w-[900px]">
           <thead>
             <tr className="bg-slate-50 border-b border-slate-100">
               <th className="px-8 py-5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pegawai</th>
@@ -570,11 +655,11 @@ const MasterKaryawan: React.FC = () => {
               <th className="px-8 py-5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Aksi</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-50">
+            <tbody className="divide-y divide-slate-50">
             {filteredUsers.map(user => (
               <tr key={user.id} className="hover:bg-slate-50/50 transition-colors">
-                        <td className="px-8 py-5">
-                          <div className="flex items-center gap-4">
+                        <td className="px-4 sm:px-6 md:px-8 py-4 sm:py-5">
+                          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
                             {user.profilePhotoUrl ? (
                               <img 
                                 src={user.profilePhotoUrl} 
@@ -587,65 +672,67 @@ const MasterKaryawan: React.FC = () => {
                             ) : (
                               <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user.id}`} className="w-10 h-10 rounded-full" alt="avatar" />
                             )}
-                            <div>
-                              <p className="font-bold text-slate-800">{user.fullName}</p>
-                              <p className="text-xs text-slate-400 font-mono">@{user.username}</p>
+                            <div className="min-w-0">
+                              <p className="font-bold text-slate-800 truncate">{user.fullName}</p>
+                              <p className="text-xs text-slate-400 font-mono truncate">@{user.username}</p>
                             </div>
                           </div>
                         </td>
-                <td className="px-8 py-5 text-sm text-slate-600 font-mono">{user.username}</td>
-                <td className="px-8 py-5 text-sm text-slate-600">{user.position}</td>
-                <td className="px-8 py-5 text-sm text-slate-600 text-center">
+                <td className="px-4 sm:px-6 md:px-8 py-4 sm:py-5 text-sm text-slate-600 font-mono truncate max-w-[140px]">{user.username}</td>
+                <td className="px-4 sm:px-6 md:px-8 py-4 sm:py-5 text-sm text-slate-600 truncate max-w-[120px]">{user.position}</td>
+                <td className="px-4 sm:px-6 md:px-8 py-4 sm:py-5 text-sm text-slate-600 text-center">
                   {typeof user.remainingLeaveDays === 'number' ? `${user.remainingLeaveDays} hari` : '-'}
                 </td>
-                <td className="px-8 py-5">
+                <td className="px-4 sm:px-6 md:px-8 py-4 sm:py-5">
                   <div className="flex flex-col items-center">
                     <button 
                       onClick={() => openDocModal(user)}
-                      className="group flex items-center gap-2 px-4 py-2 bg-teal-50 text-teal-600 rounded-xl hover:bg-teal-500 hover:text-white transition-all border border-teal-100"
+                      className="group flex items-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-teal-50 text-teal-600 rounded-xl hover:bg-teal-500 hover:text-white transition-all border border-teal-100 text-xs font-bold"
                     >
-                      <span className="text-xs font-bold">{user.documents.length} Berkas</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                      <span>{user.documents.length} Berkas</span>
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                     </button>
                   </div>
                 </td>
-                <td className="px-8 py-5">
-                  <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-green-100 text-green-700">
+                <td className="px-4 sm:px-6 md:px-8 py-4 sm:py-5">
+                  <span className="px-2 sm:px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-green-100 text-green-700 whitespace-nowrap">
                     Aktif
                   </span>
                 </td>
-                <td className="px-8 py-5">
-                  <div className="flex items-center gap-2">
+                <td className="sticky right-0 bg-white hover:bg-slate-50/50 px-4 sm:px-6 md:px-8 py-4 sm:py-5 shadow-[-4px_0_8px_rgba(0,0,0,0.04)] xl:shadow-none">
+                  <div className="flex items-center justify-end gap-1 sm:gap-2 flex-shrink-0">
                     <button
                       onClick={() => openDocModal(user)}
-                      className="p-2 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors"
+                      className="p-1.5 sm:p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
                       title="Lihat Detail Pegawai"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                       </svg>
                     </button>
                     <button
                       onClick={() => openModal(user)}
-                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      className="p-1.5 sm:p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                       title="Edit Data & Password"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                     </button>
                     <button
                       onClick={() => handleDelete(user.id)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                      className="p-1.5 sm:p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                       title="Hapus Pegawai"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                     </button>
                   </div>
                 </td>
               </tr>
             ))}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
+        </div>
         {filteredUsers.length === 0 && (
           <div className="p-20 text-center">
             <div className="text-4xl mb-4">🔍</div>
@@ -692,7 +779,6 @@ const MasterKaryawan: React.FC = () => {
             </div>
           </div>
         )}
-      </div>
 
       {/* Modal Detail Pegawai + Dokumen */}
       {isDocModalOpen && viewingUser && (
@@ -822,6 +908,67 @@ const MasterKaryawan: React.FC = () => {
                          ? `${viewingUser.remainingLeaveDays} hari`
                          : '-'}
                      </p>
+                   </div>
+
+                   {/* Data ASN/PNS — selalu tampil, kosong pakai "-" */}
+                   <div className="md:col-span-2 mt-2 pt-2 border-t border-slate-200">
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest mb-2">Data ASN/PNS</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">TMT Pangkat/Gol/Ruang</p>
+                     <p>{viewingUser.tmtPangkatGolRuang || '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">TMT Jabatan</p>
+                     <p>{viewingUser.tmtJabatan ? (typeof viewingUser.tmtJabatan === 'string' ? new Date(viewingUser.tmtJabatan).toLocaleDateString('id-ID') : String(viewingUser.tmtJabatan)) : '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">TMT CPNS</p>
+                     <p>{viewingUser.tmtCpns ? (typeof viewingUser.tmtCpns === 'string' ? new Date(viewingUser.tmtCpns).toLocaleDateString('id-ID') : String(viewingUser.tmtCpns)) : '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">TMT PNS</p>
+                     <p>{viewingUser.tmtPns ? (typeof viewingUser.tmtPns === 'string' ? new Date(viewingUser.tmtPns).toLocaleDateString('id-ID') : String(viewingUser.tmtPns)) : '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Masa Kerja</p>
+                     <p>{viewingUser.masaKerja || '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Nama Latihan Jabatan</p>
+                     <p>{viewingUser.namaLatihanJabatan || '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Tanggal Latihan Jabatan</p>
+                     <p>{viewingUser.tanggalLatihanJabatan ? (typeof viewingUser.tanggalLatihanJabatan === 'string' ? new Date(viewingUser.tanggalLatihanJabatan).toLocaleDateString('id-ID') : String(viewingUser.tanggalLatihanJabatan)) : '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Lama (Jam)</p>
+                     <p>{viewingUser.lamaJam || '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Fakultas Pendidikan Terakhir</p>
+                     <p>{viewingUser.namaFakultasPendidikanTerakhir || '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Jurusan Pendidikan Terakhir</p>
+                     <p>{viewingUser.jurusanPendidikanTerakhir || '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Tahun Lulus Pendidikan</p>
+                     <p>{viewingUser.tahunLulusPendidikan != null ? viewingUser.tahunLulusPendidikan : '-'}</p>
+                   </div>
+                   <div>
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Karpeg</p>
+                     <p>{viewingUser.karpeg || '-'}</p>
+                   </div>
+                   <div className="md:col-span-2">
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Catatan Mutasi</p>
+                     <p className="text-slate-600">{viewingUser.catatanMutasi || '-'}</p>
+                   </div>
+                   <div className="md:col-span-2">
+                     <p className="font-semibold text-slate-400 text-[10px] uppercase tracking-widest">Keterangan</p>
+                     <p className="text-slate-600">{viewingUser.keterangan || '-'}</p>
                    </div>
                  </div>
                </div>

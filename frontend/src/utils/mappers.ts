@@ -32,6 +32,20 @@ export const mapEmployeeToUser = (emp: EmployeeApi.Employee, role: UserRole = Us
     rankGolongan: emp.rankGolongan,
     employmentStatus: emp.employmentStatus,
     remainingLeaveDays: typeof emp.remainingLeaveDays === 'number' ? emp.remainingLeaveDays : undefined,
+    tmtPangkatGolRuang: emp.tmtPangkatGolRuang,
+    tmtJabatan: emp.tmtJabatan,
+    tmtCpns: emp.tmtCpns,
+    tmtPns: emp.tmtPns,
+    masaKerja: emp.masaKerja,
+    namaLatihanJabatan: emp.namaLatihanJabatan,
+    tanggalLatihanJabatan: emp.tanggalLatihanJabatan,
+    lamaJam: emp.lamaJam,
+    namaFakultasPendidikanTerakhir: emp.namaFakultasPendidikanTerakhir,
+    jurusanPendidikanTerakhir: emp.jurusanPendidikanTerakhir,
+    tahunLulusPendidikan: emp.tahunLulusPendidikan,
+    catatanMutasi: emp.catatanMutasi,
+    karpeg: emp.karpeg,
+    keterangan: emp.keterangan,
     status: 'Aktif' as const, // Backend doesn't have status field, always active
     documents: [], // Akan diisi dari endpoint terpisah
   };

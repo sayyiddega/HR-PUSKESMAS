@@ -48,12 +48,17 @@ class ApiClient {
       headers,
     });
 
-    // Handle 401 Unauthorized — redirect ke landing (bukan login)
+    // Handle 401 Unauthorized: redirect ke landing hanya jika request pakai token DAN bukan request login (sesi kedaluwarsa).
+    // Request ke /auth/login yang dapat 401 = salah password → jangan redirect, tampilkan warning di halaman login.
     if (response.status === 401) {
-      localStorage.removeItem('sikep_token');
-      localStorage.removeItem('sikep_active_user');
-      window.location.href = '#/landing';
-      throw new Error('Sesi berakhir, silakan login kembali');
+      const isLoginRequest = endpoint.includes('/auth/login');
+      if (token && !isLoginRequest) {
+        localStorage.removeItem('sikep_token');
+        localStorage.removeItem('sikep_active_user');
+        window.location.href = '#/landing';
+        throw new Error('Sesi berakhir, silakan login kembali');
+      }
+      // 401 tanpa token ATAU 401 dari login = tampilkan error (salah password / pesan dari server)
     }
 
     // Handle errors
@@ -66,6 +71,11 @@ class ApiClient {
         errorMessage = `Error ${response.status}: ${response.statusText}`;
       }
       throw new Error(errorMessage);
+    }
+
+    // 204 No Content (mis. change password sukses) — jangan parse body
+    if (response.status === 204) {
+      return null as T;
     }
 
     // Parse response - handle both wrapped {data: ...} and direct object/array
@@ -114,7 +124,7 @@ class ApiClient {
       body: formData,
     });
 
-    if (response.status === 401) {
+    if (response.status === 401 && token) {
       localStorage.removeItem('sikep_token');
       localStorage.removeItem('sikep_active_user');
       window.location.href = '#/landing';

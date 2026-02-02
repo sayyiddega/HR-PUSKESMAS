@@ -89,6 +89,21 @@ export interface User {
   rankGolongan?: string;
   employmentStatus?: string;
   remainingLeaveDays?: number;
+  // Extended ASN/PNS
+  tmtPangkatGolRuang?: string;
+  tmtJabatan?: string;
+  tmtCpns?: string;
+  tmtPns?: string;
+  masaKerja?: string;
+  namaLatihanJabatan?: string;
+  tanggalLatihanJabatan?: string;
+  lamaJam?: string;
+  namaFakultasPendidikanTerakhir?: string;
+  jurusanPendidikanTerakhir?: string;
+  tahunLulusPendidikan?: number;
+  catatanMutasi?: string;
+  karpeg?: string;
+  keterangan?: string;
   status: 'Aktif' | 'Non-Aktif'; // Display only - always 'Aktif' from backend
   documents: UserDocument[];
 }

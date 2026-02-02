@@ -63,8 +63,55 @@ public class Employee {
 
     @Column(name = "remaining_leave_days")
     private Integer remainingLeaveDays;
+
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
+
+    @Column(name = "join_date")
     private LocalDate joinDate;
+
+    // Extended ASN/PNS fields
+    @Column(name = "tmt_pangkat_gol_ruang", length = 50)
+    private String tmtPangkatGolRuang;
+
+    @Column(name = "tmt_jabatan")
+    private LocalDate tmtJabatan;
+
+    @Column(name = "tmt_cpns")
+    private LocalDate tmtCpns;
+
+    @Column(name = "tmt_pns")
+    private LocalDate tmtPns;
+
+    @Column(name = "masa_kerja", length = 50)
+    private String masaKerja;
+
+    @Column(name = "nama_latihan_jabatan", length = 200)
+    private String namaLatihanJabatan;
+
+    @Column(name = "tanggal_latihan_jabatan")
+    private LocalDate tanggalLatihanJabatan;
+
+    @Column(name = "lama_jam", length = 30)
+    private String lamaJam;
+
+    @Column(name = "nama_fakultas_pendidikan_terakhir", length = 200)
+    private String namaFakultasPendidikanTerakhir;
+
+    @Column(name = "jurusan_pendidikan_terakhir", length = 200)
+    private String jurusanPendidikanTerakhir;
+
+    @Column(name = "tahun_lulus_pendidikan")
+    private Integer tahunLulusPendidikan;
+
+    @Column(name = "catatan_mutasi", length = 2000)
+    private String catatanMutasi;
+
+    @Column(name = "karpeg", length = 100)
+    private String karpeg;
+
+    @Column(name = "keterangan", length = 2000)
+    private String keterangan;
 
     @Column(length = 500)
     private String profilePhotoPath;
@@ -178,6 +225,62 @@ public class Employee {
         this.profilePhotoPath = profilePhotoPath;
     }
 
+    public String getTmtPangkatGolRuang() {
+        return tmtPangkatGolRuang;
+    }
+
+    public LocalDate getTmtJabatan() {
+        return tmtJabatan;
+    }
+
+    public LocalDate getTmtCpns() {
+        return tmtCpns;
+    }
+
+    public LocalDate getTmtPns() {
+        return tmtPns;
+    }
+
+    public String getMasaKerja() {
+        return masaKerja;
+    }
+
+    public String getNamaLatihanJabatan() {
+        return namaLatihanJabatan;
+    }
+
+    public LocalDate getTanggalLatihanJabatan() {
+        return tanggalLatihanJabatan;
+    }
+
+    public String getLamaJam() {
+        return lamaJam;
+    }
+
+    public String getNamaFakultasPendidikanTerakhir() {
+        return namaFakultasPendidikanTerakhir;
+    }
+
+    public String getJurusanPendidikanTerakhir() {
+        return jurusanPendidikanTerakhir;
+    }
+
+    public Integer getTahunLulusPendidikan() {
+        return tahunLulusPendidikan;
+    }
+
+    public String getCatatanMutasi() {
+        return catatanMutasi;
+    }
+
+    public String getKarpeg() {
+        return karpeg;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
     public Instant getCreatedAt() {
         return createdAt;
     }
@@ -201,7 +304,21 @@ public class Employee {
                               String religion,
                               String lastEducation,
                               String rankGolongan,
-                              String employmentStatus) {
+                              String employmentStatus,
+                              String tmtPangkatGolRuang,
+                              LocalDate tmtJabatan,
+                              LocalDate tmtCpns,
+                              LocalDate tmtPns,
+                              String masaKerja,
+                              String namaLatihanJabatan,
+                              LocalDate tanggalLatihanJabatan,
+                              String lamaJam,
+                              String namaFakultasPendidikanTerakhir,
+                              String jurusanPendidikanTerakhir,
+                              Integer tahunLulusPendidikan,
+                              String catatanMutasi,
+                              String karpeg,
+                              String keterangan) {
         this.fullName = fullName;
         this.position = position;
         this.department = department;
@@ -218,6 +335,20 @@ public class Employee {
         this.lastEducation = lastEducation;
         this.rankGolongan = rankGolongan;
         this.employmentStatus = employmentStatus;
+        this.tmtPangkatGolRuang = tmtPangkatGolRuang;
+        this.tmtJabatan = tmtJabatan;
+        this.tmtCpns = tmtCpns;
+        this.tmtPns = tmtPns;
+        this.masaKerja = masaKerja;
+        this.namaLatihanJabatan = namaLatihanJabatan;
+        this.tanggalLatihanJabatan = tanggalLatihanJabatan;
+        this.lamaJam = lamaJam;
+        this.namaFakultasPendidikanTerakhir = namaFakultasPendidikanTerakhir;
+        this.jurusanPendidikanTerakhir = jurusanPendidikanTerakhir;
+        this.tahunLulusPendidikan = tahunLulusPendidikan;
+        this.catatanMutasi = catatanMutasi;
+        this.karpeg = karpeg;
+        this.keterangan = keterangan;
     }
 }
 
