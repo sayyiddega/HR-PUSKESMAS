@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Settings } from '../types';
 
 const LandingPage: React.FC<{ settings: Settings }> = ({ settings }) => {
   const [isReady, setIsReady] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Pastikan settings sudah ter-load dari API (bukan default/initial)
   useEffect(() => {
@@ -34,56 +36,96 @@ const LandingPage: React.FC<{ settings: Settings }> = ({ settings }) => {
   }
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Navbar */}
-      <nav className="border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+    <div className="bg-white min-h-screen flex flex-col" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      {/* Navbar — responsive: desktop baris satu, mobile hamburger + drawer */}
+      <nav className="border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 safe-area-top">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 md:h-20 flex items-center justify-between min-h-[44px]">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             {settings.logoUrl ? (
               <img 
                 src={settings.logoUrl} 
                 alt="Logo" 
-                className="w-10 h-10 rounded-lg object-cover" 
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg object-cover flex-shrink-0" 
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
                 }} 
               />
             ) : (
-              <div className="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-teal-500 rounded-lg flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
                 {settings.webName ? settings.webName.charAt(0) : 'P'}
               </div>
             )}
-            <span className="font-bold text-xl text-slate-800">{settings.webName || 'SIKEP Puskesmas'}</span>
+            <span className="font-bold text-base sm:text-xl text-slate-800 truncate">{settings.webName || 'SIKEP Puskesmas'}</span>
           </div>
-          <div className="flex items-center gap-8">
+          {/* Desktop: link + login */}
+          <div className="hidden md:flex items-center gap-8">
             <a href="#about" className="text-sm font-medium text-slate-600 hover:text-teal-600">Tentang</a>
             <a href="#services" className="text-sm font-medium text-slate-600 hover:text-teal-600">Layanan</a>
             <Link to="/login" className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all">
               Login Pegawai
             </Link>
           </div>
+          {/* Mobile: tombol menu — relative z-index agar di atas elemen lain */}
+          <button
+            type="button"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setMenuOpen(true); }}
+            className="md:hidden relative z-[60] p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-600 hover:bg-slate-100 rounded-xl touch-manipulation"
+            aria-label="Buka menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
         </div>
+        {/* Mobile menu — render via portal ke body agar selalu di atas & klik jalan */}
+        {menuOpen && typeof document !== 'undefined' && createPortal(
+          <>
+            <div className="fixed inset-0 bg-slate-900/60 z-[100] md:hidden" onClick={() => setMenuOpen(false)} aria-hidden="true" role="presentation" />
+            <div 
+              className="fixed inset-0 z-[110] flex flex-col bg-white overflow-hidden md:hidden" 
+              style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}
+            >
+              <div className="flex items-center justify-between px-4 py-2 border-b border-slate-100 flex-shrink-0 min-h-[52px]">
+                <span className="font-bold text-slate-800 truncate">{settings.webName || 'SIKEP'}</span>
+                <button
+                  type="button"
+                  onClick={() => setMenuOpen(false)}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 active:bg-slate-200 touch-manipulation flex-shrink-0"
+                  aria-label="Tutup menu"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+              </div>
+              <nav className="px-4 py-3 flex flex-col flex-1 min-h-0 overflow-y-auto">
+                <a href="#about" className="block py-2.5 px-4 text-slate-700 font-medium rounded-xl hover:bg-teal-50 hover:text-teal-600 min-h-[44px] flex items-center active:bg-teal-100 touch-manipulation" onClick={() => setMenuOpen(false)}>Tentang</a>
+                <a href="#services" className="block py-2.5 px-4 text-slate-700 font-medium rounded-xl hover:bg-teal-50 hover:text-teal-600 min-h-[44px] flex items-center active:bg-teal-100 touch-manipulation" onClick={() => setMenuOpen(false)}>Layanan</a>
+                <div className="mt-2 pt-2 border-t border-slate-100">
+                  <Link to="/login" className="block w-full py-2.5 px-4 bg-teal-500 text-white font-semibold rounded-xl hover:bg-teal-600 text-center min-h-[44px] flex items-center justify-center active:scale-[0.98] transition-transform touch-manipulation" onClick={() => setMenuOpen(false)}>Login Pegawai</Link>
+                </div>
+              </nav>
+            </div>
+          </>,
+          document.body
+        )}
       </nav>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden py-24">
+      {/* Hero — padding cukup di mobile agar judul & bottom tidak kepotong */}
+      <section className="relative overflow-hidden py-12 sm:py-16 md:py-24 pb-8 sm:pb-16 md:pb-24">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-teal-50/50 -skew-x-12 translate-x-32 -z-10"></div>
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="inline-block py-1 px-3 bg-teal-100 text-teal-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="min-w-0">
+            <span className="inline-block py-1 px-3 bg-teal-100 text-teal-700 rounded-full text-xs font-bold uppercase tracking-widest mb-3 md:mb-4">
               {settings.landingHeroBadge || 'Portal Kepegawaian Internal'}
             </span>
-            <h1 className="text-5xl md:text-6xl font-black text-slate-900 leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-4 md:mb-6 break-words">
               {settings.landingHeroTitle || 'Melayani dengan Hati & Profesionalisme.'}
             </h1>
-            <p className="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 mb-6 md:mb-8 max-w-lg leading-relaxed break-words">
               {settings.landingHeroSubtitle || `Sistem Informasi Kepegawaian (SIKEP) ${settings.webName} dirancang untuk mempermudah manajemen data karyawan, dokumen, dan administrasi harian.`}
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/login" className="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-slate-200 hover:bg-slate-800 transition-all">
+            <div className="flex flex-wrap gap-3 md:gap-4">
+              <Link to="/login" className="bg-slate-900 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-bold shadow-xl shadow-slate-200 hover:bg-slate-800 transition-all min-h-[44px] flex items-center justify-center">
                 Mulai Akses
               </Link>
-              <div className="flex -space-x-3 items-center ml-4">
+              <div className="flex -space-x-3 items-center ml-0 sm:ml-4">
                 {[1,2,3,4].map(i => (
                   <img key={i} src={`https://picsum.photos/seed/${i}/40`} alt="user" className="w-10 h-10 rounded-full border-4 border-white" />
                 ))}
@@ -115,12 +157,12 @@ const LandingPage: React.FC<{ settings: Settings }> = ({ settings }) => {
       </section>
 
       {/* Profile Section (Customizable) */}
-      <section id="about" className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 text-center mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">Profil & Visi Misi</h2>
+      <section id="about" className="py-12 sm:py-16 md:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center mb-10 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Profil & Visi Misi</h2>
           <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full"></div>
         </div>
-        <div className="max-w-4xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12">
           <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-slate-100">
             <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
               <span className="w-8 h-8 bg-teal-100 text-teal-600 rounded-lg flex items-center justify-center">V</span> Visi Kami
@@ -148,9 +190,9 @@ const LandingPage: React.FC<{ settings: Settings }> = ({ settings }) => {
         </div>
       </section>
 
-      {/* Footer / Contact */}
-      <footer className="bg-slate-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+      {/* Footer / Contact — dipentok ke bawah dengan safe-area */}
+      <footer className="bg-slate-900 text-white py-12 sm:py-16 mt-auto" style={{ paddingBottom: 'max(3rem, env(safe-area-inset-bottom))' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-8 md:gap-12">
           <div>
             <h4 className="text-xl font-bold mb-6">{settings.webName}</h4>
             <p className="text-slate-400 leading-relaxed mb-6">

@@ -246,7 +246,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
   });
 
   return (
-    <div className="p-8 max-w-7xl mx-auto w-full">
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full">
       <div className="mb-10 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-black text-slate-900 mb-1">Surat Menyurat Internal</h1>
@@ -423,51 +423,73 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
           </div>
         </div>
 
-        {/* Message Detail */}
+        {/* Message Detail — di mobile jadi overlay full-screen dengan tombol Tutup */}
         <div className="lg:col-span-2">
           {selectedMessage ? (
-            <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8">
-              <div className="flex items-start justify-between mb-6 pb-6 border-b border-slate-100">
-                <div>
-                  <h2 className="text-xl font-black text-slate-900 mb-2">{selectedMessage.subject}</h2>
-                  <div className="space-y-1 text-sm">
-                    <p><span className="font-bold text-slate-400">Dari:</span> {selectedMessage.senderName} {selectedMessage.senderEmail && `(${selectedMessage.senderEmail})`}</p>
-                    <p><span className="font-bold text-slate-400">Kepada:</span> {selectedMessage.receiverName} {selectedMessage.receiverEmail && `(${selectedMessage.receiverEmail})`}</p>
+            <div className="bg-white rounded-none lg:rounded-[2.5rem] border-0 lg:border border-slate-100 shadow-none lg:shadow-sm p-4 sm:p-6 md:p-8 fixed inset-0 z-50 overflow-y-auto lg:static lg:overflow-visible lg:max-h-none">
+              {/* Header sticky di mobile: tombol Tutup + judul */}
+              <div className="sticky top-0 z-10 -mx-4 -mt-4 px-4 pt-4 pb-3 bg-white border-b border-slate-100 flex items-center gap-3 lg:hidden safe-area-top">
+                <button
+                  type="button"
+                  onClick={() => { setSelectedMessage(null); setThreadMessages([]); }}
+                  className="flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100 active:bg-slate-200 touch-manipulation"
+                  aria-label="Tutup"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 className="text-base font-black text-slate-900 truncate flex-1">{selectedMessage.subject}</h2>
+              </div>
+              <div className="flex items-start justify-between mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-slate-100 mt-4 lg:mt-0">
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900 mb-2 hidden lg:block">{selectedMessage.subject}</h2>
+                  <div className="space-y-1 text-xs sm:text-sm text-slate-600">
+                    <p className="break-all"><span className="font-bold text-slate-400">Dari:</span> {selectedMessage.senderName} {selectedMessage.senderEmail && <span className="text-slate-500">({selectedMessage.senderEmail})</span>}</p>
+                    <p className="break-all"><span className="font-bold text-slate-400">Kepada:</span> {selectedMessage.receiverName} {selectedMessage.receiverEmail && <span className="text-slate-500">({selectedMessage.receiverEmail})</span>}</p>
                     <p><span className="font-bold text-slate-400">Tanggal:</span> {new Date(selectedMessage.createdAt).toLocaleString('id-ID')}</p>
                   </div>
-                  <div className="flex gap-2 mt-4">
+                  <div className="flex flex-wrap gap-2 mt-4">
                     <button
+                      type="button"
                       onClick={handleReply}
-                      className="px-4 py-2 bg-teal-50 text-teal-700 text-sm font-bold rounded-xl hover:bg-teal-100 transition-all"
+                      className="min-h-[44px] px-4 py-2.5 bg-teal-50 text-teal-700 text-sm font-bold rounded-xl hover:bg-teal-100 active:bg-teal-200 transition-all touch-manipulation"
                     >
                       Balas
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(selectedMessage.id)}
+                      className="lg:hidden min-h-[44px] px-4 py-2.5 text-red-600 hover:bg-red-50 rounded-xl transition-colors touch-manipulation"
+                    >
+                      Hapus
                     </button>
                   </div>
                 </div>
                 <button
+                  type="button"
                   onClick={() => handleDelete(selectedMessage.id)}
-                  className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                  className="hidden lg:flex p-2 min-w-[44px] min-h-[44px] items-center justify-center text-red-600 hover:bg-red-50 rounded-xl transition-colors flex-shrink-0"
+                  aria-label="Hapus pesan"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                 </button>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6 mt-4">
                 {threadMessages.length === 0 ? (
-                  <p className="text-slate-700 whitespace-pre-wrap leading-relaxed">{selectedMessage.body}</p>
+                  <p className="text-sm sm:text-base text-slate-700 whitespace-pre-wrap leading-relaxed break-words">{selectedMessage.body}</p>
                 ) : (
                   threadMessages.map((msg, idx) => (
-                    <div key={msg.id} className={`p-4 rounded-xl border ${idx === threadMessages.length - 1 ? 'border-teal-200 bg-teal-50/40' : 'border-slate-100 bg-white'}`}>
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="text-xs text-slate-500">
+                    <div key={msg.id} className={`p-3 sm:p-4 rounded-xl border ${idx === threadMessages.length - 1 ? 'border-teal-200 bg-teal-50/40' : 'border-slate-100 bg-white'}`}>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                        <div className="text-xs text-slate-500 break-words">
                           <span className="font-bold text-slate-700">{msg.senderName}</span>{' '}
                           <span className="text-slate-400">→</span>{' '}
                           <span className="font-bold text-slate-700">{msg.receiverName}</span>
                         </div>
-                        <div className="text-[10px] text-slate-400">
+                        <div className="text-[10px] text-slate-400 flex-shrink-0">
                           {new Date(msg.createdAt).toLocaleString('id-ID')}
                         </div>
                       </div>
-                      <div className="text-sm text-slate-700 whitespace-pre-wrap leading-relaxed">
+                      <div className="text-xs sm:text-sm text-slate-700 whitespace-pre-wrap leading-relaxed break-words">
                         {msg.body}
                       </div>
                       {msg.attachmentUrl && (
@@ -489,7 +511,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
               </div>
             </div>
           ) : (
-            <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-20 text-center">
+            <div className="hidden lg:flex bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-20 text-center flex-col items-center justify-center">
               <svg className="w-16 h-16 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>

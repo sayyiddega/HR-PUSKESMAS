@@ -119,7 +119,7 @@ const LeaveRequestsPage: React.FC<{ user: User }> = ({ user }) => {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto w-full">
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
         <div>
           <h1 className="text-2xl font-black text-slate-900 mb-1">
@@ -301,11 +301,11 @@ const LeaveRequestsPage: React.FC<{ user: User }> = ({ user }) => {
                 ></textarea>
               </div>
               </div>
-              <div className="px-8 pb-8 pt-4 border-t border-slate-100 flex-shrink-0">
+              <div className="px-4 sm:px-6 md:px-8 pb-6 sm:pb-8 pt-4 border-t border-slate-100 flex-shrink-0 safe-area-bottom">
                 <button 
                   type="submit" 
                   disabled={isProcessing}
-                  className="w-full py-5 bg-teal-500 text-white font-black text-lg rounded-3xl shadow-xl hover:bg-teal-600 transition-all disabled:opacity-50"
+                  className="w-full min-h-[48px] py-4 sm:py-5 bg-teal-500 text-white font-black text-base sm:text-lg rounded-2xl sm:rounded-3xl shadow-xl hover:bg-teal-600 active:scale-[0.98] transition-all disabled:opacity-50 touch-manipulation"
                 >
                   {isProcessing ? 'Memproses...' : 'Kirim Pengajuan'}
                 </button>

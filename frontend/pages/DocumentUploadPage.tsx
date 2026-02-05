@@ -71,7 +71,7 @@ const DocumentUploadPage: React.FC<{ user: User, onUpdate: (user: User) => void 
   };
 
   return (
-    <div className="p-8 max-w-5xl mx-auto w-full">
+    <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto w-full">
       <div className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-slate-900 mb-1">Kelengkapan Berkas</h1>

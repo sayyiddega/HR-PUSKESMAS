@@ -57,7 +57,7 @@ const AdminDashboard: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="p-8 max-w-7xl mx-auto w-full">
+      <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full">
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
             <div className="animate-spin inline-block w-12 h-12 border-4 rounded-full border-t-teal-500 border-teal-200 mb-4"></div>
@@ -69,7 +69,7 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto w-full">
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full">
       <div className="mb-10">
         <h1 className="text-2xl font-black text-slate-900 mb-1">Analitik Kepegawaian</h1>
         <p className="text-slate-500">Ringkasan data dan performa administrasi hari ini.</p>

@@ -198,7 +198,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
   };
 
   return (
-    <div className="p-8 w-full max-w-6xl mx-auto">
+    <div className="p-4 sm:p-6 md:p-8 w-full max-w-6xl mx-auto">
       <div className="mb-10">
         <h1 className="text-2xl font-black text-slate-900 mb-1">Profil Saya</h1>
         <p className="text-slate-500">Perbarui informasi pribadi dan kata sandi Anda.</p>

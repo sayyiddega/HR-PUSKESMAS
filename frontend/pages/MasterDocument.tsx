@@ -104,7 +104,7 @@ const MasterDocument: React.FC = () => {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto w-full">
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full">
       <div className="mb-10">
         <h1 className="text-2xl font-black text-slate-900 mb-1">Master Jenis Dokumen</h1>
         <p className="text-slate-500">Kelola kategori berkas yang harus diunggah pegawai.</p>

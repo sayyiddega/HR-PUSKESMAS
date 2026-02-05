@@ -133,7 +133,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
   };
 
   return (
-    <div className="p-8 max-w-4xl mx-auto w-full">
+    <div className="p-4 sm:p-6 md:p-8 max-w-4xl mx-auto w-full">
       <div className="mb-10">
         <h1 className="text-2xl font-black text-slate-900 mb-1">Konfigurasi Instansi</h1>
         <p className="text-slate-500">Sesuaikan identitas Puskesmas untuk tampilan web dan laporan.</p>

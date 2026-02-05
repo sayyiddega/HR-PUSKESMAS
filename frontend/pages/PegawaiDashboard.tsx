@@ -42,7 +42,7 @@ const PegawaiDashboard: React.FC<{ user: User }> = ({ user }) => {
 
   if (isLoading) {
     return (
-      <div className="p-8 max-w-7xl mx-auto w-full">
+      <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full">
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
             <div className="animate-spin inline-block w-12 h-12 border-4 rounded-full border-t-teal-500 border-teal-200 mb-4"></div>
@@ -54,7 +54,7 @@ const PegawaiDashboard: React.FC<{ user: User }> = ({ user }) => {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto w-full">
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
         <div>
           <h1 className="text-3xl font-black text-slate-900 mb-2">Halo, {user.fullName.split(' ')[0]}! 👋</h1>

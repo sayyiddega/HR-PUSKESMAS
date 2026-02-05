@@ -344,23 +344,23 @@ const MasterKaryawan: React.FC = () => {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto w-full">
-      <div className="flex items-center justify-between mb-10">
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6 md:mb-10">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 mb-1">Manajemen Karyawan</h1>
-          <p className="text-slate-500">Kelola data, kredensial login, dan verifikasi dokumen.</p>
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 mb-1">Manajemen Karyawan</h1>
+          <p className="text-sm text-slate-500">Kelola data, kredensial login, dan verifikasi dokumen.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full md:w-auto">
           <button 
             onClick={handleExportAllEmployeesPDF}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-blue-100 transition-all"
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 min-h-[44px] rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-100 transition-all active:scale-[0.98]"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             Export PDF Semua
           </button>
           <button 
             onClick={() => openModal()}
-            className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-teal-100 transition-all"
+            className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-3 min-h-[44px] rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-teal-100 transition-all active:scale-[0.98]"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
             Tambah Pegawai
@@ -781,55 +781,61 @@ const MasterKaryawan: React.FC = () => {
           </div>
         )}
 
-      {/* Modal Detail Pegawai + Dokumen */}
+      {/* Modal Detail Pegawai — di mobile menempel ke atas (tanpa gap), desktop tetap center */}
       {isDocModalOpen && viewingUser && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-md">
-          <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-300">
-             <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-teal-500 text-white">
-               <div className="flex items-center gap-4">
-                 {viewingUser.profilePhotoUrl ? (
-                   <img 
-                     src={viewingUser.profilePhotoUrl} 
-                     className="w-12 h-12 rounded-2xl border-2 border-white/50 object-cover" 
-                     alt="avatar"
-                     onError={(e) => {
-                       (e.target as HTMLImageElement).src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${viewingUser.id}`;
-                     }}
-                   />
-                 ) : (
-                   <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${viewingUser.id}`} className="w-12 h-12 rounded-2xl border-2 border-white/50" alt="avatar" />
-                 )}
-                 <div>
-                   <h2 className="text-xl font-black">{viewingUser.fullName}</h2>
-                  <p className="text-xs text-teal-100 font-bold uppercase tracking-widest">{viewingUser.username}</p>
-                  <div className="flex flex-wrap gap-2 mt-2 text-[10px] font-semibold">
-                    {viewingUser.nip && (
-                      <span className="px-2 py-1 rounded-full bg-white/10 border border-white/30">
-                        NIP: {viewingUser.nip}
-                      </span>
-                    )}
-                    {typeof viewingUser.remainingLeaveDays === 'number' && (
-                      <span className="px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-300 text-emerald-50">
-                        Sisa cuti: {viewingUser.remainingLeaveDays} hari
-                      </span>
-                    )}
-                  </div>
+        <div className="fixed inset-0 z-[110] flex items-start sm:items-center justify-center p-0 sm:p-4 bg-slate-900/70 backdrop-blur-md">
+          <div 
+            className="bg-white w-full max-w-2xl rounded-b-3xl sm:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col min-h-[100dvh] max-h-[100dvh] sm:min-h-0 sm:max-h-[90vh]"
+            style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+          >
+             {/* Header: di mobile beri safe-area hanya di dalam header agar modal tempel ke atas */}
+             <div 
+               className="p-4 sm:p-6 md:p-8 border-b border-slate-100 bg-teal-500 text-white flex-shrink-0"
+               style={{ paddingTop: 'max(1rem, env(safe-area-inset-top))' }}
+             >
+               <div className="flex flex-wrap items-start gap-3">
+                 <div className="flex items-center gap-3 min-w-0 flex-1">
+                   {viewingUser.profilePhotoUrl ? (
+                     <img 
+                       src={viewingUser.profilePhotoUrl} 
+                       className="w-12 h-12 rounded-2xl border-2 border-white/50 object-cover flex-shrink-0" 
+                       alt="avatar"
+                       onError={(e) => {
+                         (e.target as HTMLImageElement).src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${viewingUser.id}`;
+                       }}
+                     />
+                   ) : (
+                     <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${viewingUser.id}`} className="w-12 h-12 rounded-2xl border-2 border-white/50 flex-shrink-0" alt="avatar" />
+                   )}
+                   <div className="min-w-0">
+                     <h2 className="text-lg sm:text-xl font-black truncate">{viewingUser.fullName}</h2>
+                     <p className="text-xs text-teal-100 font-bold uppercase tracking-widest truncate">{viewingUser.username}</p>
+                     <div className="flex flex-wrap gap-2 mt-2 text-[10px] font-semibold">
+                       {viewingUser.nip && (
+                         <span className="px-2 py-1 rounded-full bg-white/10 border border-white/30">NIP: {viewingUser.nip}</span>
+                       )}
+                       {typeof viewingUser.remainingLeaveDays === 'number' && (
+                         <span className="px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-300 text-emerald-50">Sisa cuti: {viewingUser.remainingLeaveDays} hari</span>
+                       )}
+                     </div>
+                   </div>
+                 </div>
+                 <div className="flex items-center gap-2 w-full sm:w-auto flex-shrink-0">
+                   <button 
+                     type="button"
+                     onClick={() => handleExportEmployeePDF(viewingUser)}
+                     className="min-h-[44px] px-4 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 flex-1 sm:flex-initial touch-manipulation"
+                   >
+                     <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                     Export PDF
+                   </button>
+                   <button type="button" onClick={closeModal} className="min-w-[44px] min-h-[44px] flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-colors touch-manipulation flex-shrink-0" aria-label="Tutup">
+                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                   </button>
                  </div>
                </div>
-               <div className="flex items-center gap-2">
-                 <button 
-                   onClick={() => handleExportEmployeePDF(viewingUser)}
-                   className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-xl font-bold text-sm flex items-center gap-2 transition-all"
-                 >
-                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                   Export PDF
-                 </button>
-                 <button onClick={closeModal} className="w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-               </div>
              </div>
-             <div className="p-8 max-h-[60vh] overflow-auto space-y-6">
+             <div className="p-4 sm:p-6 md:p-8 max-h-[50vh] sm:max-h-[60vh] overflow-auto space-y-4 sm:space-y-6 flex-1 min-h-0">
                {/* Informasi Pegawai (detail biodata) */}
                <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
                  <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-4">Informasi Pegawai</h3>
@@ -1031,8 +1037,8 @@ const MasterKaryawan: React.FC = () => {
                  </div>
                )}
              </div>
-             <div className="p-8 bg-slate-50 border-t border-slate-100 text-center">
-                <button onClick={closeModal} className="px-8 py-3 bg-slate-200 text-slate-600 font-bold rounded-2xl hover:bg-slate-300 transition-colors">Tutup Jendela</button>
+             <div className="mt-auto p-4 sm:p-6 md:p-8 bg-slate-50 border-t border-slate-100 text-center flex-shrink-0 safe-area-bottom">
+                <button type="button" onClick={closeModal} className="w-full min-h-[48px] sm:w-auto sm:min-w-0 px-8 py-3 bg-slate-200 text-slate-600 font-bold rounded-2xl hover:bg-slate-300 active:scale-[0.98] transition-all touch-manipulation">Tutup Jendela</button>
              </div>
           </div>
         </div>

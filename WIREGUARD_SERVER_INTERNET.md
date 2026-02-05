@@ -4,6 +4,14 @@ Agar client WireGuard bisa internet lewat server, di **server** perlu:
 1. IP forwarding aktif
 2. NAT (masquerade) dari subnet WireGuard ke interface keluar server
 
+**Kalau client bisa ping server tapi tidak bisa internet** → masalah di server (forward atau NAT). Cek dengan:
+
+```bash
+sudo bash wireguard-server-cek.sh
+```
+
+Lalu perbaiki sesuai output, atau jalankan `sudo bash wireguard-server-internet.sh`.
+
 ---
 
 ## 1. Cek interface keluar server
