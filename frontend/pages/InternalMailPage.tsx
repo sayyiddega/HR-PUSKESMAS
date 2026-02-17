@@ -254,7 +254,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
         </div>
         <button
           onClick={() => { setActiveTab('compose'); setSelectedMessage(null); setThreadMessages([]); setComposeData({receiverIds: [], subject: '', body: '', replyToId: null}); setAttachmentFile(null); }}
-          className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-teal-100 transition-all"
+          className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-amber-100 transition-all"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"/></svg>
           Tulis Pesan
@@ -270,7 +270,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                 onClick={() => { setActiveTab('inbox'); setSelectedMessage(null); setThreadMessages([]); }}
                 className={`flex-1 py-3 rounded-xl font-bold transition-all ${
                   activeTab === 'inbox' 
-                    ? 'bg-teal-500 text-white shadow-lg' 
+                    ? 'bg-amber-600 text-white shadow-lg' 
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -280,7 +280,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                 onClick={() => { setActiveTab('sent'); setSelectedMessage(null); setThreadMessages([]); }}
                 className={`flex-1 py-3 rounded-xl font-bold transition-all ${
                   activeTab === 'sent' 
-                    ? 'bg-teal-500 text-white shadow-lg' 
+                    ? 'bg-amber-600 text-white shadow-lg' 
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -292,15 +292,15 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
               <form onSubmit={handleSend} className="space-y-4">
                 <div className="relative">
                   <label className="block text-xs font-bold text-slate-400 uppercase mb-2">Kepada</label>
-                  <div className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus-within:ring-2 focus-within:ring-teal-500 outline-none">
+                  <div className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus-within:ring-2 focus-within:ring-amber-500 outline-none">
                     <div className="flex flex-wrap gap-2 mb-2">
                       {composeData.receiverIds.map(id => {
                         const emp = employees.find(e => e.id.toString() === id);
                         if (!emp) return null;
                         return (
-                          <span key={id} className="inline-flex items-center gap-2 px-3 py-1 bg-teal-100 text-teal-700 text-xs font-bold rounded-full">
+                          <span key={id} className="inline-flex items-center gap-2 px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
                             {emp.fullName}
-                            <button type="button" onClick={() => removeRecipient(id)} className="text-teal-700 hover:text-teal-900">×</button>
+                            <button type="button" onClick={() => removeRecipient(id)} className="text-amber-700 hover:text-amber-900">×</button>
                           </span>
                         );
                       })}
@@ -338,7 +338,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                     type="text"
                     value={composeData.subject}
                     onChange={(e) => setComposeData({...composeData, subject: e.target.value})}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                     placeholder="Subjek pesan"
                     required
                   />
@@ -349,7 +349,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                     value={composeData.body}
                     onChange={(e) => setComposeData({...composeData, body: e.target.value})}
                     rows={6}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                     placeholder="Tulis pesan Anda di sini..."
                     required
                   />
@@ -376,7 +376,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                   <button
                     type="submit"
                     disabled={isSending}
-                    className="flex-1 py-3 bg-teal-500 text-white rounded-xl font-bold hover:bg-teal-600 transition-all disabled:opacity-50"
+                    className="flex-1 py-3 bg-amber-600 text-white rounded-xl font-bold hover:bg-amber-700 transition-all disabled:opacity-50"
                   >
                     {isSending ? 'Mengirim...' : 'Kirim'}
                   </button>
@@ -386,7 +386,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
               <div className="space-y-2 max-h-[600px] overflow-y-auto">
                 {isLoading ? (
                   <div className="p-10 text-center">
-                    <div className="animate-spin inline-block w-6 h-6 border-3 rounded-full border-t-teal-500 border-teal-200"></div>
+                    <div className="animate-spin inline-block w-6 h-6 border-3 rounded-full border-t-amber-500 border-amber-200"></div>
                   </div>
                 ) : currentMessages.length === 0 ? (
                   <div className="p-10 text-center text-slate-400">Tidak ada pesan</div>
@@ -397,7 +397,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                       onClick={() => handleViewMessage(msg)}
                       className={`p-4 rounded-xl cursor-pointer transition-all mb-3 ${
                         selectedMessage?.threadId === msg.threadId || selectedMessage?.id === msg.id
-                          ? 'bg-teal-50 border-2 border-teal-500'
+                          ? 'bg-amber-50 border-2 border-amber-500'
                           : msg.isRead || activeTab === 'sent'
                           ? 'bg-slate-50 hover:bg-slate-100 border border-slate-100'
                           : 'bg-blue-50 hover:bg-blue-100 border border-blue-100'
@@ -438,7 +438,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                   <div className="flex gap-2 mt-4">
                     <button
                       onClick={handleReply}
-                      className="px-4 py-2 bg-teal-50 text-teal-700 text-sm font-bold rounded-xl hover:bg-teal-100 transition-all"
+                      className="px-4 py-2 bg-amber-50 text-amber-700 text-sm font-bold rounded-xl hover:bg-amber-100 transition-all"
                     >
                       Balas
                     </button>
@@ -456,7 +456,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                   <p className="text-slate-700 whitespace-pre-wrap leading-relaxed">{selectedMessage.body}</p>
                 ) : (
                   threadMessages.map((msg, idx) => (
-                    <div key={msg.id} className={`p-4 rounded-xl border ${idx === threadMessages.length - 1 ? 'border-teal-200 bg-teal-50/40' : 'border-slate-100 bg-white'}`}>
+                    <div key={msg.id} className={`p-4 rounded-xl border ${idx === threadMessages.length - 1 ? 'border-amber-200 bg-amber-50/40' : 'border-slate-100 bg-white'}`}>
                       <div className="flex items-center justify-between mb-2">
                         <div className="text-xs text-slate-500">
                           <span className="font-bold text-slate-700">{msg.senderName}</span>{' '}
@@ -477,7 +477,7 @@ const InternalMailPage: React.FC<{ user: User, onUnreadCountChange?: () => void 
                             href={msg.attachmentUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-teal-600 font-bold text-xs hover:underline"
+                            className="text-amber-600 font-bold text-xs hover:underline"
                           >
                             {msg.attachmentName || 'Download Lampiran'}
                           </a>

@@ -86,8 +86,8 @@ echo -e "${GREEN}✓${NC} Backend JAR built"
 # -------------------------------------------
 echo ""
 echo -e "${YELLOW}[2/6]${NC} Build backend Docker image..."
-docker build -t hr-backend:latest -f "${BASE_DIR}/dockerfile" "${BASE_DIR}"
-echo -e "${GREEN}✓${NC} Backend image built (hr-backend:latest)"
+docker build -t hr-puskesmas-backend:latest -f "${BASE_DIR}/dockerfile" "${BASE_DIR}"
+echo -e "${GREEN}✓${NC} Backend image built (hr-puskesmas-backend:latest)"
 
 # -------------------------------------------
 # 3) Build Frontend (Docker Node)
@@ -107,40 +107,40 @@ echo -e "${GREEN}✓${NC} Frontend built (dist/)"
 # -------------------------------------------
 echo ""
 echo -e "${YELLOW}[4/6]${NC} Build frontend Docker image..."
-docker build -t hr-frontend:latest -f "${BASE_DIR}/frontend/dockerfile" "${BASE_DIR}/frontend"
-echo -e "${GREEN}✓${NC} Frontend image built (hr-frontend:latest)"
+docker build -t hr-puskesmas-frontend:latest -f "${BASE_DIR}/frontend/dockerfile" "${BASE_DIR}/frontend"
+echo -e "${GREEN}✓${NC} Frontend image built (hr-puskesmas-frontend:latest)"
 
 # -------------------------------------------
-# 5) Stop & Remove Existing Containers
+# 5) Stop & Remove Existing Containers (nama unik: tidak bentrok dengan app lain)
 # -------------------------------------------
 echo ""
-echo -e "${YELLOW}[5/6]${NC} Stop & remove existing containers..."
-docker stop hr-backend hr-frontend 2>/dev/null || true
-docker rm hr-backend hr-frontend 2>/dev/null || true
+echo -e "${YELLOW}[5/6]${NC} Stop & remove existing containers (hr-puskesmas-*)..."
+docker stop hr-puskesmas-backend hr-puskesmas-frontend 2>/dev/null || true
+docker rm hr-puskesmas-backend hr-puskesmas-frontend 2>/dev/null || true
 echo -e "${GREEN}✓${NC} Old containers stopped & removed (if any)"
 
 # -------------------------------------------
-# 6) Start New Containers (with uploads volume)
+# 6) Start New Containers (nama & volume unik: tidak bentrok dengan app lain)
 # -------------------------------------------
 echo ""
 echo -e "${YELLOW}[6/6]${NC} Start new containers..."
 
-echo "   Starting backend (port 8081, volume hr-uploads:/app/uploads)..."
+echo "   Starting backend (port 8040, volume hr-puskesmas-uploads:/app/uploads)..."
 docker run -d \
   $ENV_FILE_ARG \
-  -p 8081:8080 \
-  -v hr-uploads:/app/uploads \
-  --name hr-backend \
+  -p 8040:8040 \
+  -v hr-puskesmas-uploads:/app/uploads \
+  --name hr-puskesmas-backend \
   --restart unless-stopped \
-  hr-backend:latest
+  hr-puskesmas-backend:latest
 
-echo "   Starting frontend (port 8083)..."
+echo "   Starting frontend (port 8041)..."
 docker run -d \
   $ENV_FILE_ARG \
-  -p 8083:80 \
-  --name hr-frontend \
+  -p 8041:80 \
+  --name hr-puskesmas-frontend \
   --restart unless-stopped \
-  hr-frontend:latest
+  hr-puskesmas-frontend:latest
 
 echo -e "${GREEN}✓${NC} Containers started"
 
@@ -150,10 +150,11 @@ echo -e "${GREEN}SELESAI - REBUILD & RESTART BERHASIL${NC}"
 echo "=========================================="
 echo ""
 echo "Status containers:"
-docker ps --filter "name=hr-backend" --filter "name=hr-frontend" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+docker ps --filter "name=hr-puskesmas-backend" --filter "name=hr-puskesmas-frontend" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 echo ""
 echo "Catatan:"
-echo "- Backend:  http://localhost:8081  (via Nginx Proxy Manager: https://apitny.uctech.online)"
-echo "- Frontend: http://localhost:8083  (via Nginx Proxy Manager: https://tny.uctech.online)"
-echo "- Uploads disimpan di volume Docker: hr-uploads (tidak hilang saat restart)."
+echo "- Backend:  http://localhost:8040  (container: hr-puskesmas-backend)"
+echo "- Frontend: http://localhost:8041  (container: hr-puskesmas-frontend)"
+echo "- Uploads: volume hr-puskesmas-uploads (tidak bentrok dengan app lain)."
+echo "- Set VITE_API_URL=http://localhost:8040/api di .env sebelum build agar frontend memanggil backend 8040."
 

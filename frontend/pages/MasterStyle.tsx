@@ -157,12 +157,12 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
 
         {/* Success Message */}
         {success && (
-          <div className="p-4 bg-teal-50 border border-teal-100 text-teal-700 text-sm rounded-2xl flex items-center gap-3">
+          <div className="p-4 bg-amber-50 border border-amber-100 text-amber-700 text-sm rounded-2xl flex items-center gap-3">
             <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
             </svg>
             <span>{success}</span>
-            <button onClick={() => setSuccess('')} className="ml-auto text-teal-400 hover:text-teal-600">
+            <button onClick={() => setSuccess('')} className="ml-auto text-amber-400 hover:text-amber-600">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -178,7 +178,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                 type="text" 
                 value={settings.webName}
                 onChange={(e) => setSettings({...settings, webName: e.target.value})}
-                className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none font-bold" 
+                className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none font-bold" 
               />
             </div>
             <div>
@@ -188,7 +188,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                 value={settings.websiteBaseUrl || ''}
                 onChange={(e) => setSettings({...settings, websiteBaseUrl: e.target.value})}
                 placeholder="https://hr.puskesmas.id"
-                className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
               />
               <p className="text-xs text-slate-400 mt-2">URL dasar untuk generate link file dan dokumen</p>
             </div>
@@ -221,7 +221,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isLoading}
-                className="w-full py-2 px-4 bg-white border-2 border-slate-200 text-slate-600 text-xs font-bold rounded-xl hover:border-teal-500 hover:text-teal-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed mb-4"
+                className="w-full py-2 px-4 bg-white border-2 border-slate-200 text-slate-600 text-xs font-bold rounded-xl hover:border-amber-500 hover:text-amber-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed mb-4"
               >
                 {isLoading ? 'Mengupload...' : (logoPreview || settings.logoUrl ? 'Ganti Logo' : 'Upload Logo')}
               </button>
@@ -249,7 +249,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
               rows={2}
               value={settings.address}
               onChange={(e) => setSettings({...settings, address: e.target.value})}
-              className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+              className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
             ></textarea>
           </div>
           <div>
@@ -258,7 +258,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
               type="text" 
               value={settings.phone}
               onChange={(e) => setSettings({...settings, phone: e.target.value})}
-              className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+              className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
             />
           </div>
           <div>
@@ -268,7 +268,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
               value={settings.email}
               onChange={(e) => setSettings({...settings, email: e.target.value})}
               placeholder="info@puskesmas.go.id"
-              className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+              className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
             />
             <p className="text-xs text-slate-400 mt-2">Email akan tersimpan di browser (localStorage) untuk ditampilkan di landing page</p>
           </div>
@@ -309,7 +309,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   type="button"
                   onClick={() => landingImageInputRef.current?.click()}
                   disabled={isLoading}
-                  className="px-5 py-3 bg-white border-2 border-slate-200 text-slate-600 text-sm font-bold rounded-xl hover:border-teal-500 hover:text-teal-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-5 py-3 bg-white border-2 border-slate-200 text-slate-600 text-sm font-bold rounded-xl hover:border-amber-500 hover:text-amber-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? 'Mengupload...' : (landingImagePreview || settings.landingHeroImageUrl ? 'Ganti Gambar' : 'Upload Gambar')}
                 </button>
@@ -334,7 +334,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   value={settings.landingHeroBadge || ''}
                   onChange={(e) => setSettings({ ...settings, landingHeroBadge: e.target.value })}
                   placeholder="Portal Kepegawaian Internal"
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 />
               </div>
               <div>
@@ -344,7 +344,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   value={settings.landingHeroTitle || ''}
                   onChange={(e) => setSettings({ ...settings, landingHeroTitle: e.target.value })}
                   placeholder="Melayani dengan Hati & Profesionalisme."
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 />
               </div>
               <div>
@@ -354,7 +354,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   value={settings.landingHeroSubtitle || ''}
                   onChange={(e) => setSettings({ ...settings, landingHeroSubtitle: e.target.value })}
                   placeholder="Deskripsi singkat tentang tujuan SIKEP di Puskesmas Anda."
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 />
               </div>
               <div>
@@ -364,7 +364,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   value={settings.landingStatusText || ''}
                   onChange={(e) => setSettings({ ...settings, landingStatusText: e.target.value })}
                   placeholder="Sistem Berjalan Optimal & Aman"
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 />
               </div>
             </div>
@@ -377,7 +377,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   value={settings.landingVisionText || ''}
                   onChange={(e) => setSettings({ ...settings, landingVisionText: e.target.value })}
                   placeholder="Visi Puskesmas terkait SDM dan pelayanan."
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 />
               </div>
               <div>
@@ -387,7 +387,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   value={settings.landingMission1 || ''}
                   onChange={(e) => setSettings({ ...settings, landingMission1: e.target.value })}
                   placeholder="Memberikan pelayanan prima sesuai standar."
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 />
               </div>
               <div>
@@ -397,14 +397,14 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   value={settings.landingMission2 || ''}
                   onChange={(e) => setSettings({ ...settings, landingMission2: e.target.value })}
                   placeholder="Mendorong kemandirian hidup sehat."
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none mb-2"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none mb-2"
                 />
                 <textarea
                   rows={2}
                   value={settings.landingMission3 || ''}
                   onChange={(e) => setSettings({ ...settings, landingMission3: e.target.value })}
                   placeholder="Meningkatkan kompetensi tenaga kesehatan secara berkala."
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 />
               </div>
               <div>
@@ -414,7 +414,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
                   value={settings.landingFooterText || ''}
                   onChange={(e) => setSettings({ ...settings, landingFooterText: e.target.value })}
                   placeholder="Sistem manajemen internal Puskesmas untuk efisiensi birokrasi..."
-                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 />
               </div>
             </div>
@@ -425,7 +425,7 @@ const MasterStyle: React.FC<{ onUpdate: () => void }> = ({ onUpdate }) => {
           <button 
             type="submit" 
             disabled={isLoading}
-            className="w-full py-5 bg-teal-500 text-white font-black text-lg rounded-3xl shadow-xl shadow-teal-100 hover:bg-teal-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full py-5 bg-amber-600 text-white font-black text-lg rounded-3xl shadow-xl shadow-amber-100 hover:bg-amber-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {isLoading ? (
               <>

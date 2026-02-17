@@ -127,12 +127,12 @@ const MasterDocument: React.FC = () => {
 
       {/* Success Message */}
       {success && (
-        <div className="mb-6 p-4 bg-teal-50 border border-teal-100 text-teal-700 text-sm rounded-2xl flex items-center gap-3 animate-in fade-in">
+        <div className="mb-6 p-4 bg-amber-50 border border-amber-100 text-amber-700 text-sm rounded-2xl flex items-center gap-3 animate-in fade-in">
           <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
           </svg>
           <span>{success}</span>
-          <button onClick={() => setSuccess('')} className="ml-auto text-teal-400 hover:text-teal-600">
+          <button onClick={() => setSuccess('')} className="ml-auto text-amber-400 hover:text-amber-600">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
@@ -152,7 +152,7 @@ const MasterDocument: React.FC = () => {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 placeholder="Mis: Sertifikat Vaksin, Ijazah..." 
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                 required
               />
             </div>
@@ -163,7 +163,7 @@ const MasterDocument: React.FC = () => {
                 onChange={(e) => setNewDescription(e.target.value)}
                 placeholder="Deskripsi dokumen..." 
                 rows={2}
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
               />
             </div>
             <label className="flex items-center gap-3 p-4 bg-slate-50 rounded-xl cursor-pointer">
@@ -171,14 +171,14 @@ const MasterDocument: React.FC = () => {
                 type="checkbox" 
                 checked={isRequired}
                 onChange={(e) => setIsRequired(e.target.checked)}
-                className="w-5 h-5 accent-teal-500"
+                className="w-5 h-5 accent-amber-600"
               />
               <span className="text-sm font-semibold text-slate-600">Dokumen ini Wajib diunggah</span>
             </label>
             <button 
               type="submit"
               disabled={isLoading || !newName.trim()}
-              className="w-full py-4 bg-teal-500 text-white font-bold rounded-2xl shadow-lg shadow-teal-100 hover:bg-teal-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-4 bg-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-amber-100 hover:bg-amber-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <>
@@ -224,9 +224,9 @@ const MasterDocument: React.FC = () => {
             </div>
           ) : (
             pagedDocTypes.map(doc => (
-            <div key={doc.id} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between group hover:border-teal-100 transition-all">
+            <div key={doc.id} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between group hover:border-amber-100 transition-all">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600">
+                <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                 </div>
                 <div>

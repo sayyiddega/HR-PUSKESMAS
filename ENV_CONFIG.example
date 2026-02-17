@@ -27,8 +27,8 @@ SPRING_DATASOURCE_PASSWORD=casaos
 # Folder uploads di dalam container (jangan ubah kecuali paham)
 APP_STORAGE_UPLOAD_DIR=uploads
 
-# Origins yang diizinkan untuk CORS (koma-separator)
-APP_CORS_ALLOWED_ORIGINS=https://tny.uctech.online,http://tny.uctech.online,http://localhost:3000,http://localhost:5173,http://localhost:8083
+# Origins yang diizinkan untuk CORS (koma-separator). Untuk script ini: http://localhost:8041
+APP_CORS_ALLOWED_ORIGINS=https://tny.uctech.online,http://tny.uctech.online,http://localhost:3000,http://localhost:5173,http://localhost:8041,http://localhost:8083
 
 ########################
 # Backend - JWT (opsional override)
@@ -41,7 +41,7 @@ APP_JWT_EXPIRATION_MINUTES=120
 # Frontend - API Base URL
 ########################
 
-# URL backend dari sisi browser
+# URL backend dari sisi browser. Untuk REBUILD_AND_RESTART_FINAL.sh (port 8040): http://localhost:8040/api
 VITE_API_URL=https://apitny.uctech.online/api
 
 ########################

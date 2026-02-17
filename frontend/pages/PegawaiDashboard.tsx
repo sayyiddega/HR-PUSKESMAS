@@ -45,7 +45,7 @@ const PegawaiDashboard: React.FC<{ user: User }> = ({ user }) => {
       <div className="p-8 max-w-7xl mx-auto w-full">
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
-            <div className="animate-spin inline-block w-12 h-12 border-4 rounded-full border-t-teal-500 border-teal-200 mb-4"></div>
+            <div className="animate-spin inline-block w-12 h-12 border-4 rounded-full border-t-amber-500 border-amber-200 mb-4"></div>
             <p className="text-slate-400 font-medium">Memuat data dashboard...</p>
           </div>
         </div>
@@ -61,7 +61,7 @@ const PegawaiDashboard: React.FC<{ user: User }> = ({ user }) => {
           <p className="text-slate-500">Senang melihatmu kembali. Pantau administrasi Anda di sini.</p>
         </div>
         <div className="flex gap-4">
-          <Link to="/cuti" className="bg-teal-500 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-teal-100 hover:bg-teal-600 transition-all flex items-center gap-2">
+          <Link to="/cuti" className="bg-amber-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-amber-100 hover:bg-amber-700 transition-all flex items-center gap-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"/></svg>
             Ajukan Cuti
           </Link>
@@ -72,7 +72,7 @@ const PegawaiDashboard: React.FC<{ user: User }> = ({ user }) => {
         {/* Left Column: Profile Card */}
         <div className="lg:col-span-2 space-y-8">
           <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-[4rem] transition-all group-hover:w-40 group-hover:h-40 -z-0"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-bl-[4rem] transition-all group-hover:w-40 group-hover:h-40 -z-0"></div>
             <div className="relative z-10 flex flex-col md:flex-row gap-10">
               <div className="flex-shrink-0">
                 {user.profilePhotoUrl ? (
@@ -128,7 +128,7 @@ const PegawaiDashboard: React.FC<{ user: User }> = ({ user }) => {
                  <span className="text-slate-500 pb-1 font-bold">/ {totalDocTypes} Total</span>
                </div>
                <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                 <div className="bg-teal-400 h-full rounded-full transition-all duration-1000" style={{ width: `${completionPercent}%` }}></div>
+                 <div className="bg-amber-400 h-full rounded-full transition-all duration-1000" style={{ width: `${completionPercent}%` }}></div>
                </div>
                <p className="mt-4 text-[10px] text-slate-500 font-bold uppercase">{100-completionPercent}% Lagi untuk kelengkapan 100%</p>
             </div>
@@ -164,12 +164,12 @@ const PegawaiDashboard: React.FC<{ user: User }> = ({ user }) => {
         <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-8">
             <h3 className="font-black text-slate-800">Checklist Berkas</h3>
-            <Link to="/dokumen" className="text-teal-600 text-xs font-bold hover:underline">Kelola</Link>
+            <Link to="/dokumen" className="text-amber-600 text-xs font-bold hover:underline">Kelola</Link>
           </div>
           <div className="space-y-6">
             {isLoading ? (
               <div className="p-10 text-center">
-                <div className="animate-spin inline-block w-6 h-6 border-3 rounded-full border-t-teal-500 border-teal-200"></div>
+                <div className="animate-spin inline-block w-6 h-6 border-3 rounded-full border-t-amber-500 border-amber-200"></div>
                 <p className="text-slate-400 text-xs mt-2">Memuat...</p>
               </div>
             ) : (
@@ -177,7 +177,7 @@ const PegawaiDashboard: React.FC<{ user: User }> = ({ user }) => {
                 const isUploaded = myDocuments.some(d => d.documentTypeId === doc.id);
                 return (
                 <div key={doc.id} className="flex items-center gap-4">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isUploaded ? 'bg-teal-500 text-white shadow-lg shadow-teal-100' : 'bg-slate-100 text-slate-300'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isUploaded ? 'bg-amber-600 text-white shadow-lg shadow-amber-100' : 'bg-slate-100 text-slate-300'}`}>
                     {isUploaded ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg>
                     ) : (

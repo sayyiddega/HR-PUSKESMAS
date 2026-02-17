@@ -18,103 +18,111 @@ import InternalMailPage from './pages/InternalMailPage';
 import NotificationToast from './components/NotificationToast';
 import { ICONS, INITIAL_SETTINGS } from './constants';
 
-const Sidebar = ({ user, logout, settings, unreadCount }: { user: User, logout: () => void, settings: Settings, unreadCount: number }) => {
+const NavLink = ({ to, children, badge }: { to: string; children: React.ReactNode; badge?: number }) => (
+  <Link
+    to={to}
+    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-amber-400 transition-colors text-sm font-medium relative"
+  >
+    {children}
+    {badge != null && badge > 0 && (
+      <span className="bg-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center">{badge > 99 ? '99+' : badge}</span>
+    )}
+  </Link>
+);
+
+const TopNavBar = ({ user, logout, settings, unreadCount }: { user: User, logout: () => void, settings: Settings, unreadCount: number }) => {
   const isAdmin = user.role === UserRole.ADMIN;
-  
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navItems: { to: string; label: string; badge?: number }[] = [
+    { to: '/', label: 'Dashboard' },
+    ...(isAdmin
+      ? [
+          { to: '/master-karyawan', label: 'Master Karyawan' },
+          { to: '/master-document', label: 'Master Dokumen' },
+          { to: '/master-style', label: 'Master Style' },
+        ]
+      : [{ to: '/profile', label: 'Profil' }]),
+    { to: '/dokumen', label: 'Berkas' },
+    { to: '/cuti', label: isAdmin ? 'Cuti' : 'Cuti' },
+    { to: '/mail', label: 'Surat', badge: unreadCount },
+  ];
+
   return (
-    <div className="w-64 bg-white border-r border-slate-200 flex flex-col h-screen sticky top-0">
-      <div className="p-6 border-b border-slate-100 flex items-center gap-3">
-        {settings.logoUrl ? (
-          <img src={settings.logoUrl} alt="Logo" className="w-10 h-10 rounded-lg object-cover" onError={(e) => {
-            (e.target as HTMLImageElement).style.display = 'none';
-            (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-          }} />
-        ) : null}
-        <div className={`w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center text-white font-bold text-xl ${settings.logoUrl ? 'hidden' : ''}`}>
-          {settings.webName ? settings.webName.charAt(0) : 'P'}
-        </div>
-        <div>
-          <h1 className="text-sm font-bold text-slate-800 leading-tight">{settings.webName || 'SIKEP'}</h1>
-          <p className="text-[10px] text-slate-500 uppercase tracking-wider">Puskesmas App</p>
-        </div>
-      </div>
-      
-      <nav className="flex-1 p-4 space-y-2">
-        <Link to="/" className="flex items-center gap-3 p-3 text-slate-600 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-all group">
-          <ICONS.Dashboard />
-          <span className="font-medium">Dashboard</span>
-        </Link>
-        
-        {isAdmin ? (
-          <>
-            <Link to="/master-karyawan" className="flex items-center gap-3 p-3 text-slate-600 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-all group">
-              <ICONS.Users />
-              <span className="font-medium">Master Karyawan</span>
-            </Link>
-            <Link to="/master-document" className="flex items-center gap-3 p-3 text-slate-600 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-all group">
-              <ICONS.Files />
-              <span className="font-medium">Master Dokumen</span>
-            </Link>
-            <Link to="/master-style" className="flex items-center gap-3 p-3 text-slate-600 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-all group">
-              <ICONS.Settings />
-              <span className="font-medium">Master Style</span>
-            </Link>
-          </>
-        ) : (
-          <>
-            <Link to="/profile" className="flex items-center gap-3 p-3 text-slate-600 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-all group">
-              <ICONS.Users />
-              <span className="font-medium">Profile Kepegawaian</span>
-            </Link>
-            <Link to="/dokumen" className="flex items-center gap-3 p-3 text-slate-600 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-all group">
-              <ICONS.Files />
-              <span className="font-medium">Kelengkapan Dokumen</span>
-            </Link>
-          </>
-        )}
-        
-        <Link to="/cuti" className="flex items-center gap-3 p-3 text-slate-600 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-all group">
-          <ICONS.Calendar />
-          <span className="font-medium">{isAdmin ? 'Persetujuan Cuti' : 'Pengajuan Cuti'}</span>
-        </Link>
-        <Link to="/mail" className="flex items-center gap-3 p-3 text-slate-600 hover:bg-teal-50 hover:text-teal-600 rounded-xl transition-all group relative">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          <span className="font-medium">Surat Internal</span>
-          {unreadCount > 0 && (
-            <span className="absolute right-2 top-2 bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full min-w-[20px] text-center">
-              {unreadCount > 99 ? '99+' : unreadCount}
-            </span>
-          )}
-        </Link>
-      </nav>
-      
-      <div className="p-4 border-t border-slate-100">
-        <div className="flex items-center gap-3 mb-4 p-2">
-          {user.profilePhotoUrl ? (
-            <img 
-              src={user.profilePhotoUrl} 
-              alt="avatar" 
-              className="w-10 h-10 rounded-full border-2 border-teal-100 object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.username}`;
-              }}
-            />
-          ) : (
-            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user.username}`} alt="avatar" className="w-10 h-10 rounded-full border-2 border-teal-100" />
-          )}
-          <div className="overflow-hidden">
-            <p className="text-xs font-bold text-slate-800 truncate">{user.fullName}</p>
-            <p className="text-[10px] text-slate-500 uppercase">{user.role}</p>
+    <div className="sticky top-0 z-40 w-full bg-slate-800 text-white shadow-lg border-b border-slate-700/50">
+      <header className="flex h-14 items-center justify-between px-4 max-w-[1400px] mx-auto gap-4">
+        {/* Logo */}
+        <div className="flex items-center gap-2 shrink-0">
+          {settings.logoUrl ? (
+            <img src={settings.logoUrl} alt="" className="h-8 w-8 rounded-lg object-cover ring-1 ring-slate-600" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden'); }} />
+          ) : null}
+          <div className={`h-8 w-8 rounded-lg bg-amber-500 flex items-center justify-center text-slate-900 font-bold text-sm ${settings.logoUrl ? 'hidden' : ''}`}>
+            {settings.webName ? settings.webName.charAt(0) : 'P'}
           </div>
+          <span className="font-semibold truncate hidden sm:block max-w-[140px]">{settings.webName || 'SIKEP'}</span>
         </div>
-        <button 
-          onClick={logout}
-          className="flex w-full items-center gap-3 p-3 text-red-600 hover:bg-red-50 rounded-xl transition-all group"
-        >
-          <ICONS.Logout />
-          <span className="font-medium">Keluar</span>
-        </button>
-      </div>
+
+        {/* Nav menu di atas - horizontal */}
+        <nav className="hidden md:flex items-center gap-0.5 flex-1 justify-center min-w-0">
+          {navItems.map(({ to, label, badge }) => (
+            <NavLink key={to} to={to} badge={badge}>
+              {label}
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* Mobile: hamburger buka menu dropdown di bawah navbar */}
+        <div className="md:hidden flex-1 flex justify-end">
+          <button
+            type="button"
+            onClick={() => setMenuOpen((o) => !o)}
+            className="p-2 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+            aria-label="Menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+
+        {/* User + Logout */}
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="hidden sm:flex items-center gap-2 pr-3 border-r border-slate-600">
+            {user.profilePhotoUrl ? (
+              <img src={user.profilePhotoUrl} alt="" className="h-8 w-8 rounded-full object-cover ring-1 ring-amber-500/50" onError={(e) => { (e.target as HTMLImageElement).src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.username}`; }} />
+            ) : (
+              <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user.username}`} alt="" className="h-8 w-8 rounded-full ring-1 ring-amber-500/50" />
+            )}
+            <div className="hidden sm:block max-w-[100px] truncate">
+              <p className="text-xs font-semibold truncate">{user.fullName}</p>
+              <p className="text-[10px] text-slate-400 uppercase">{user.role}</p>
+            </div>
+          </div>
+          <button type="button" onClick={logout} className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-700 hover:text-amber-400 rounded-lg transition-colors">
+            <ICONS.Logout />
+            <span className="hidden xs:inline">Keluar</span>
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile dropdown: menu tampil di bawah navbar (masih "di atas") */}
+      {menuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-slate-800 border-t border-slate-700 shadow-xl z-50">
+          <nav className="flex flex-col p-2 gap-0.5">
+            {navItems.map(({ to, label, badge }) => (
+              <Link
+                key={to}
+                to={to}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-amber-400 transition-colors font-medium"
+              >
+                {label}
+                {badge != null && badge > 0 && (
+                  <span className="bg-rose-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">{badge > 99 ? '99+' : badge}</span>
+                )}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
     </div>
   );
 };
@@ -201,7 +209,7 @@ const App: React.FC = () => {
         link.href = settings.logoUrl;
         link.type = settings.logoUrl.match(/\.(jpg|jpeg)$/i) ? 'image/jpeg' : 'image/png';
       } else {
-        link.href = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="%230d9488"/><text x="16" y="22" font-size="18" fill="white" text-anchor="middle" font-family="sans-serif">' + (title.charAt(0) || 'S') + '</text></svg>';
+        link.href = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23f59e0b"/><text x="16" y="22" font-size="18" fill="%230f172a" text-anchor="middle" font-family="sans-serif">' + (title.charAt(0) || 'S') + '</text></svg>';
         link.type = 'image/svg+xml';
       }
     }
@@ -220,9 +228,9 @@ const App: React.FC = () => {
   // Loading screen saat settings masih dimuat (prevent glitch)
   if (isLoadingSettings) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-teal-500 border-t-transparent mb-4"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-amber-500 border-t-transparent mb-4"></div>
           <p className="text-slate-600 font-medium">Memuat pengaturan...</p>
         </div>
       </div>
@@ -231,8 +239,8 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className="min-h-screen bg-slate-50 flex">
-        {user && <Sidebar user={user} logout={logout} settings={settings} unreadCount={unreadCount} />}
+      <div className="min-h-screen bg-slate-50 bg-pattern-dots flex flex-col">
+        {user && <TopNavBar user={user} logout={logout} settings={settings} unreadCount={unreadCount} />}
         <main className="flex-1 flex flex-col min-h-0 overflow-y-auto overflow-x-hidden relative">
           <Routes>
             <Route path="/landing" element={<LandingPage settings={settings} />} />

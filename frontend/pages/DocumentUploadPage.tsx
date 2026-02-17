@@ -87,7 +87,7 @@ const DocumentUploadPage: React.FC<{ user: User, onUpdate: (user: User) => void 
 
       {isLoading ? (
         <div className="p-20 text-center">
-          <div className="animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-teal-500 border-teal-200"></div>
+          <div className="animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-amber-500 border-amber-200"></div>
           <p className="text-slate-400 font-medium mt-4">Memuat data dokumen...</p>
         </div>
       ) : (
@@ -97,10 +97,10 @@ const DocumentUploadPage: React.FC<{ user: User, onUpdate: (user: User) => void 
             const isUploading = uploadingId === type.id;
 
           return (
-            <div key={type.id} className={`bg-white p-6 rounded-[2rem] border transition-all ${doc ? 'border-teal-100 shadow-teal-50/50 shadow-lg' : 'border-slate-100 shadow-sm'}`}>
+            <div key={type.id} className={`bg-white p-6 rounded-[2rem] border transition-all ${doc ? 'border-amber-100 shadow-amber-50/50 shadow-lg' : 'border-slate-100 shadow-sm'}`}>
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${doc ? 'bg-teal-500 text-white' : 'bg-slate-50 text-slate-300'}`}>
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${doc ? 'bg-amber-600 text-white' : 'bg-slate-50 text-slate-300'}`}>
                     {doc ? '📄' : '📤'}
                   </div>
                   <div>
@@ -126,22 +126,22 @@ const DocumentUploadPage: React.FC<{ user: User, onUpdate: (user: User) => void 
                       Ganti Berkas
                       <input type="file" className="hidden" accept=".pdf,.jpg,.jpeg,.png" onChange={(e) => handleFileUpload(type.id, e)} disabled={isUploading} />
                     </label>
-                    <a href={doc.fileUrl} target="_blank" rel="noreferrer" className="flex-1 text-center py-2.5 bg-teal-50 text-teal-600 rounded-xl text-xs font-bold hover:bg-teal-100 transition-colors">
+                    <a href={doc.fileUrl} target="_blank" rel="noreferrer" className="flex-1 text-center py-2.5 bg-amber-50 text-amber-600 rounded-xl text-xs font-bold hover:bg-amber-100 transition-colors">
                       Lihat
                     </a>
                   </div>
                 </div>
               ) : (
                 <div className="relative group">
-                  <label className={`w-full h-32 flex flex-col items-center justify-center border-2 border-dashed rounded-[1.5rem] transition-all cursor-pointer ${isUploading ? 'bg-slate-50 border-teal-200' : 'bg-slate-50 border-slate-200 hover:bg-white hover:border-teal-400'}`}>
+                  <label className={`w-full h-32 flex flex-col items-center justify-center border-2 border-dashed rounded-[1.5rem] transition-all cursor-pointer ${isUploading ? 'bg-slate-50 border-amber-200' : 'bg-slate-50 border-slate-200 hover:bg-white hover:border-amber-400'}`}>
                     {isUploading ? (
                       <div className="flex flex-col items-center gap-2">
-                        <div className="w-6 h-6 border-4 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
-                        <span className="text-xs font-bold text-teal-600 animate-pulse">Mengunggah...</span>
+                        <div className="w-6 h-6 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+                        <span className="text-xs font-bold text-amber-600 animate-pulse">Mengunggah...</span>
                       </div>
                     ) : (
                       <>
-                        <svg className="w-8 h-8 text-slate-300 mb-2 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        <svg className="w-8 h-8 text-slate-300 mb-2 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                         <span className="text-xs font-bold text-slate-400 uppercase">Pilih File</span>
                       </>
                     )}

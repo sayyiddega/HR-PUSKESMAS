@@ -139,9 +139,9 @@ const LeaveRequestsPage: React.FC<{ user: User }> = ({ user }) => {
           <button 
             onClick={() => setIsModalOpen(true)}
             disabled={typeof user.remainingLeaveDays === 'number' && user.remainingLeaveDays <= 0}
-            className={`bg-teal-500 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-teal-100 hover:bg-teal-600 transition-all flex items-center gap-2 ${
+            className={`bg-amber-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-amber-100 hover:bg-amber-700 transition-all flex items-center gap-2 ${
               typeof user.remainingLeaveDays === 'number' && user.remainingLeaveDays <= 0
-                ? 'opacity-60 cursor-not-allowed hover:bg-teal-500'
+                ? 'opacity-60 cursor-not-allowed hover:bg-amber-700'
                 : ''
             }`}
           >
@@ -153,11 +153,11 @@ const LeaveRequestsPage: React.FC<{ user: User }> = ({ user }) => {
 
       <div className="space-y-4">
         {displayRequests.map(req => (
-          <div key={req.id} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-teal-100 transition-all">
+          <div key={req.id} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-amber-100 transition-all">
             <div className="flex items-center gap-4">
               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl ${
                 req.type === LeaveType.SAKIT ? 'bg-red-50 text-red-600' :
-                req.type === LeaveType.CUTI ? 'bg-teal-50 text-teal-600' : 'bg-blue-50 text-blue-600'
+                req.type === LeaveType.CUTI ? 'bg-amber-50 text-amber-600' : 'bg-blue-50 text-blue-600'
               }`}>
                 {req.type === LeaveType.SAKIT ? '🤒' : req.type === LeaveType.CUTI ? '🏖️' : '📁'}
               </div>
@@ -305,7 +305,7 @@ const LeaveRequestsPage: React.FC<{ user: User }> = ({ user }) => {
                 <button 
                   type="submit" 
                   disabled={isProcessing}
-                  className="w-full py-5 bg-teal-500 text-white font-black text-lg rounded-3xl shadow-xl hover:bg-teal-600 transition-all disabled:opacity-50"
+                  className="w-full py-5 bg-amber-600 text-white font-black text-lg rounded-3xl shadow-xl hover:bg-amber-700 transition-all disabled:opacity-50"
                 >
                   {isProcessing ? 'Memproses...' : 'Kirim Pengajuan'}
                 </button>

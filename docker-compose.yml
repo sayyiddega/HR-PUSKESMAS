@@ -1,0 +1,36 @@
+# HR-PUSKESMAS: Backend 8040 | Frontend 8041
+# Nama container & volume unik agar tidak bentrok dengan app lain (hr-backend/hr-frontend).
+# Build frontend dulu: cd frontend && npm run build (sebelum docker-compose up --build)
+# API dari browser: set VITE_API_URL=http://localhost:8040/api saat build frontend
+
+version: '3.8'
+
+services:
+  backend:
+    image: hr-puskesmas-backend:latest
+    build: .
+    container_name: hr-puskesmas-backend
+    ports:
+      - "8040:8040"
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL:-jdbc:postgresql://192.168.1.141:7801/postgres}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME:-casaos}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD:-casaos}
+      - APP_CORS_ALLOWED_ORIGINS=${APP_CORS_ALLOWED_ORIGINS:-http://localhost:8041,http://localhost:3000,http://localhost:5173}
+      - APP_STORAGE_UPLOAD_DIR=${APP_STORAGE_UPLOAD_DIR:-uploads}
+    volumes:
+      - hr-puskesmas-uploads:/app/uploads
+    restart: unless-stopped
+
+  frontend:
+    image: hr-puskesmas-frontend:latest
+    build: ./frontend
+    container_name: hr-puskesmas-frontend
+    ports:
+      - "8041:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  hr-puskesmas-uploads:

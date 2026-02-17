@@ -1,7 +1,6 @@
 
 import React, { useState, useRef } from 'react';
 import { User } from '../types';
-import { saveUser } from '../store';
 import * as EmployeeApi from '../src/api/employee';
 import { showNotification } from '../src/utils/notification';
 
@@ -205,7 +204,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
       </div>
 
       <div className="bg-white rounded-[3rem] border border-slate-100 shadow-sm overflow-hidden">
-        <div className="h-32 bg-teal-500"></div>
+        <div className="h-32 bg-amber-600"></div>
         <div className="px-10 pb-10">
             <div className="relative -mt-16 mb-8 flex items-end justify-between">
             <div className="relative group">
@@ -270,7 +269,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                 type="text" 
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none transition-all font-bold" 
+                className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none transition-all font-bold" 
                 required
               />
             </div>
@@ -282,7 +281,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={position}
                   onChange={(e) => setPosition(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -291,7 +290,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
             </div>
@@ -303,7 +302,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -323,7 +322,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                 rows={2}
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
               />
             </div>
 
@@ -334,7 +333,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="date" 
                   value={dateOfBirth}
                   onChange={(e) => setDateOfBirth(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -343,7 +342,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="date" 
                   value={joinDate}
                   onChange={(e) => setJoinDate(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
             </div>
@@ -356,7 +355,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={nik}
                   onChange={(e) => setNik(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -364,7 +363,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                 <select
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none"
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none"
                 >
                   <option value="">Pilih</option>
                   <option value="Laki-laki">Laki-laki</option>
@@ -377,7 +376,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={placeOfBirth}
                   onChange={(e) => setPlaceOfBirth(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -386,7 +385,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={maritalStatus}
                   onChange={(e) => setMaritalStatus(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -395,7 +394,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={religion}
                   onChange={(e) => setReligion(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -404,7 +403,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={lastEducation}
                   onChange={(e) => setLastEducation(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -413,7 +412,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={rankGolongan}
                   onChange={(e) => setRankGolongan(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
               <div>
@@ -422,7 +421,7 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
                   type="text" 
                   value={employmentStatus}
                   onChange={(e) => setEmploymentStatus(e.target.value)}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" 
                 />
               </div>
             </div>
@@ -431,27 +430,27 @@ const ProfilePage: React.FC<{ user: User, onUpdate: (user: User) => void }> = ({
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT Pangkat/Gol/Ruang</label>
-                <input type="text" value={tmtPangkatGolRuang} onChange={(e) => setTmtPangkatGolRuang(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" />
+                <input type="text" value={tmtPangkatGolRuang} onChange={(e) => setTmtPangkatGolRuang(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" />
               </div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT Jabatan</label><input type="date" value={tmtJabatan} onChange={(e) => setTmtJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT CPNS</label><input type="date" value={tmtCpns} onChange={(e) => setTmtCpns(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT PNS</label><input type="date" value={tmtPns} onChange={(e) => setTmtPns(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Masa Kerja</label><input type="text" value={masaKerja} onChange={(e) => setMasaKerja(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Nama Latihan Jabatan</label><input type="text" value={namaLatihanJabatan} onChange={(e) => setNamaLatihanJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Tanggal Latihan Jabatan</label><input type="date" value={tanggalLatihanJabatan} onChange={(e) => setTanggalLatihanJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Lama (Jam)</label><input type="text" value={lamaJam} onChange={(e) => setLamaJam(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Fakultas Pendidikan Terakhir</label><input type="text" value={namaFakultasPendidikanTerakhir} onChange={(e) => setNamaFakultasPendidikanTerakhir(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Jurusan Pendidikan Terakhir</label><input type="text" value={jurusanPendidikanTerakhir} onChange={(e) => setJurusanPendidikanTerakhir(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Tahun Lulus Pendidikan</label><input type="number" value={tahunLulusPendidikan} onChange={(e) => setTahunLulusPendidikan(e.target.value)} placeholder="Contoh: 2015" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Karpeg</label><input type="text" value={karpeg} onChange={(e) => setKarpeg(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT Jabatan</label><input type="date" value={tmtJabatan} onChange={(e) => setTmtJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT CPNS</label><input type="date" value={tmtCpns} onChange={(e) => setTmtCpns(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">TMT PNS</label><input type="date" value={tmtPns} onChange={(e) => setTmtPns(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Masa Kerja</label><input type="text" value={masaKerja} onChange={(e) => setMasaKerja(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Nama Latihan Jabatan</label><input type="text" value={namaLatihanJabatan} onChange={(e) => setNamaLatihanJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Tanggal Latihan Jabatan</label><input type="date" value={tanggalLatihanJabatan} onChange={(e) => setTanggalLatihanJabatan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Lama (Jam)</label><input type="text" value={lamaJam} onChange={(e) => setLamaJam(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Fakultas Pendidikan Terakhir</label><input type="text" value={namaFakultasPendidikanTerakhir} onChange={(e) => setNamaFakultasPendidikanTerakhir(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Jurusan Pendidikan Terakhir</label><input type="text" value={jurusanPendidikanTerakhir} onChange={(e) => setJurusanPendidikanTerakhir(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Tahun Lulus Pendidikan</label><input type="number" value={tahunLulusPendidikan} onChange={(e) => setTahunLulusPendidikan(e.target.value)} placeholder="Contoh: 2015" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+              <div><label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Karpeg</label><input type="text" value={karpeg} onChange={(e) => setKarpeg(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Catatan Mutasi</label>
-              <textarea rows={2} value={catatanMutasi} onChange={(e) => setCatatanMutasi(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" />
+              <textarea rows={2} value={catatanMutasi} onChange={(e) => setCatatanMutasi(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Keterangan</label>
-              <textarea rows={2} value={keterangan} onChange={(e) => setKeterangan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500 outline-none" />
+              <textarea rows={2} value={keterangan} onChange={(e) => setKeterangan(e.target.value)} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-amber-600 outline-none" />
             </div>
 
             <hr className="border-slate-50 my-8" />

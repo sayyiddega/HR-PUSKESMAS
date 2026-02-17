@@ -30,7 +30,7 @@ const AdminDashboard: React.FC = () => {
       { label: 'Total Pegawai', value: dashboardStats.totalEmployees, color: 'bg-blue-500', icon: '👥' },
       { label: 'Pengajuan Cuti Pending', value: dashboardStats.pendingLeaves, color: 'bg-amber-500', icon: '⏳' },
       { label: 'Dokumen Perlu Review', value: dashboardStats.documentsNeedReview, color: 'bg-purple-500', icon: '📄' },
-      { label: 'Pegawai Aktif', value: dashboardStats.totalEmployees, color: 'bg-teal-500', icon: '✅' },
+      { label: 'Pegawai Aktif', value: dashboardStats.totalEmployees, color: 'bg-amber-500', icon: '✅' },
     ];
   }, [dashboardStats]);
 
@@ -60,8 +60,8 @@ const AdminDashboard: React.FC = () => {
       <div className="p-8 max-w-7xl mx-auto w-full">
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
-            <div className="animate-spin inline-block w-12 h-12 border-4 rounded-full border-t-teal-500 border-teal-200 mb-4"></div>
-            <p className="text-slate-400 font-medium">Memuat data dashboard...</p>
+            <div className="animate-spin inline-block w-12 h-12 border-4 rounded-full border-t-amber-500 border-amber-200 mb-4"></div>
+            <p className="text-slate-500 font-medium">Memuat data dashboard...</p>
           </div>
         </div>
       </div>
@@ -78,11 +78,11 @@ const AdminDashboard: React.FC = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {stats.map((stat, i) => (
-          <div key={i} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+          <div key={i} className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
             <div className={`w-12 h-12 ${stat.color} text-white rounded-2xl flex items-center justify-center text-xl mb-4 shadow-lg shadow-current/20`}>
               {stat.icon}
             </div>
-            <p className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-1">{stat.label}</p>
+            <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">{stat.label}</p>
             <h3 className="text-3xl font-black text-slate-900">{stat.value}</h3>
           </div>
         ))}
@@ -90,7 +90,7 @@ const AdminDashboard: React.FC = () => {
 
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Main Chart */}
-        <div className="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+        <div className="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
           <h3 className="text-lg font-bold text-slate-800 mb-8">Distribusi Jabatan Pegawai</h3>
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -102,16 +102,16 @@ const AdminDashboard: React.FC = () => {
                   cursor={{fill: '#f8fafc'}}
                   contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                 />
-                <Bar dataKey="count" fill="#0ea5e9" radius={[6, 6, 0, 0]} barSize={40} />
+                <Bar dataKey="count" fill="#f59e0b" radius={[6, 6, 0, 0]} barSize={40} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Donut Chart */}
-        <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+        <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm">
           <h3 className="text-lg font-bold text-slate-800 mb-2">Kelengkapan Berkas</h3>
-          <p className="text-xs text-slate-400 mb-8">Berdasarkan total dokumen wajib</p>
+          <p className="text-xs text-slate-500 mb-8">Berdasarkan total dokumen wajib</p>
           <div className="h-[250px] w-full relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -133,7 +133,7 @@ const AdminDashboard: React.FC = () => {
             </ResponsiveContainer>
             <div className="absolute inset-0 flex items-center justify-center flex-col pointer-events-none">
               <span className="text-2xl font-black text-slate-800">{completionPercent}%</span>
-              <span className="text-[10px] font-bold text-slate-400 uppercase">Lengkap</span>
+              <span className="text-[10px] font-bold text-slate-500 uppercase">Lengkap</span>
             </div>
           </div>
           <div className="space-y-3 mt-6">

@@ -360,7 +360,7 @@ const MasterKaryawan: React.FC = () => {
           </button>
           <button 
             onClick={() => openModal()}
-            className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-teal-100 transition-all"
+            className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-amber-100 transition-all"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
             Tambah Pegawai
@@ -375,7 +375,7 @@ const MasterKaryawan: React.FC = () => {
           <input 
             type="text" 
             placeholder="Cari Email atau Nama..." 
-            className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all"
+            className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none transition-all"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -405,7 +405,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.username}
                     onChange={(e) => setFormData({...formData, username: e.target.value})}
                     placeholder="contoh@puskesmas.id"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" 
                   />
                 </div>
                 <div>
@@ -416,7 +416,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.password}
                     onChange={(e) => setFormData({...formData, password: e.target.value})}
                     placeholder={editingUser ? "Kosongkan jika tidak diganti" : "Minimal 8 karakter"}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" 
                   />
                 </div>
               </div>
@@ -430,7 +430,7 @@ const MasterKaryawan: React.FC = () => {
                     type="text" required
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" 
                   />
                 </div>
 
@@ -441,7 +441,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.position}
                     onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                     placeholder="Mis: Dokter, Perawat"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" 
                   />
                 </div>
 
@@ -452,7 +452,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.department}
                     onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                     placeholder="Mis: Pelayanan, KIA"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" 
                   />
                 </div>
 
@@ -463,7 +463,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="081234567890"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" 
                   />
                 </div>
 
@@ -473,7 +473,7 @@ const MasterKaryawan: React.FC = () => {
                     type="date"
                     value={formData.dateOfBirth}
                     onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" 
                   />
                 </div>
 
@@ -483,7 +483,7 @@ const MasterKaryawan: React.FC = () => {
                     type="date"
                     value={formData.joinDate}
                     onChange={(e) => setFormData({ ...formData, joinDate: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" 
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" 
                   />
                 </div>
 
@@ -495,7 +495,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.nip}
                     onChange={(e) => setFormData({ ...formData, nip: e.target.value })}
                     placeholder="1987xxxxxxxxxxxx"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
 
@@ -506,7 +506,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.nik}
                     onChange={(e) => setFormData({ ...formData, nik: e.target.value })}
                     placeholder="3273xxxxxxxxxxxx"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
 
@@ -515,7 +515,7 @@ const MasterKaryawan: React.FC = () => {
                   <select
                     value={formData.gender}
                     onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   >
                     <option value="">Pilih</option>
                     <option value="Laki-laki">Laki-laki</option>
@@ -530,7 +530,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.placeOfBirth}
                     onChange={(e) => setFormData({ ...formData, placeOfBirth: e.target.value })}
                     placeholder="Kota / Kabupaten"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
 
@@ -541,7 +541,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.maritalStatus}
                     onChange={(e) => setFormData({ ...formData, maritalStatus: e.target.value })}
                     placeholder="Belum Kawin / Kawin / Duda / Janda"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
 
@@ -552,7 +552,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.religion}
                     onChange={(e) => setFormData({ ...formData, religion: e.target.value })}
                     placeholder="Islam / Kristen / dll"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
 
@@ -563,7 +563,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.lastEducation}
                     onChange={(e) => setFormData({ ...formData, lastEducation: e.target.value })}
                     placeholder="SMA / D3 / S1 / S2"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
 
@@ -574,7 +574,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.rankGolongan}
                     onChange={(e) => setFormData({ ...formData, rankGolongan: e.target.value })}
                     placeholder="III/a, III/b, dst"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
 
@@ -585,7 +585,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.employmentStatus}
                     onChange={(e) => setFormData({ ...formData, employmentStatus: e.target.value })}
                     placeholder="PNS / Kontrak / Honorer"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
 
@@ -597,7 +597,7 @@ const MasterKaryawan: React.FC = () => {
                     value={formData.remainingLeaveDays}
                     onChange={(e) => setFormData({ ...formData, remainingLeaveDays: e.target.value })}
                     placeholder="Mis: 12"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none"
                   />
                 </div>
               </div>
@@ -605,20 +605,20 @@ const MasterKaryawan: React.FC = () => {
               <hr className="border-slate-50 my-4" />
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 ml-1">Data ASN/PNS (opsional)</p>
               <div className="grid md:grid-cols-2 gap-4">
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT Pangkat/Gol/Ruang</label><input type="text" value={formData.tmtPangkatGolRuang} onChange={(e) => setFormData({ ...formData, tmtPangkatGolRuang: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT Jabatan</label><input type="date" value={formData.tmtJabatan} onChange={(e) => setFormData({ ...formData, tmtJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT CPNS</label><input type="date" value={formData.tmtCpns} onChange={(e) => setFormData({ ...formData, tmtCpns: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT PNS</label><input type="date" value={formData.tmtPns} onChange={(e) => setFormData({ ...formData, tmtPns: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Masa Kerja</label><input type="text" value={formData.masaKerja} onChange={(e) => setFormData({ ...formData, masaKerja: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Nama Latihan Jabatan</label><input type="text" value={formData.namaLatihanJabatan} onChange={(e) => setFormData({ ...formData, namaLatihanJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Tanggal Latihan Jabatan</label><input type="date" value={formData.tanggalLatihanJabatan} onChange={(e) => setFormData({ ...formData, tanggalLatihanJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Lama (Jam)</label><input type="text" value={formData.lamaJam} onChange={(e) => setFormData({ ...formData, lamaJam: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Fakultas Pendidikan Terakhir</label><input type="text" value={formData.namaFakultasPendidikanTerakhir} onChange={(e) => setFormData({ ...formData, namaFakultasPendidikanTerakhir: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Jurusan Pendidikan Terakhir</label><input type="text" value={formData.jurusanPendidikanTerakhir} onChange={(e) => setFormData({ ...formData, jurusanPendidikanTerakhir: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Tahun Lulus</label><input type="number" value={formData.tahunLulusPendidikan} onChange={(e) => setFormData({ ...formData, tahunLulusPendidikan: e.target.value })} placeholder="2015" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Karpeg</label><input type="text" value={formData.karpeg} onChange={(e) => setFormData({ ...formData, karpeg: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div className="md:col-span-2"><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Catatan Mutasi</label><textarea rows={2} value={formData.catatanMutasi} onChange={(e) => setFormData({ ...formData, catatanMutasi: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
-                <div className="md:col-span-2"><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Keterangan</label><textarea rows={2} value={formData.keterangan} onChange={(e) => setFormData({ ...formData, keterangan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT Pangkat/Gol/Ruang</label><input type="text" value={formData.tmtPangkatGolRuang} onChange={(e) => setFormData({ ...formData, tmtPangkatGolRuang: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT Jabatan</label><input type="date" value={formData.tmtJabatan} onChange={(e) => setFormData({ ...formData, tmtJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT CPNS</label><input type="date" value={formData.tmtCpns} onChange={(e) => setFormData({ ...formData, tmtCpns: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">TMT PNS</label><input type="date" value={formData.tmtPns} onChange={(e) => setFormData({ ...formData, tmtPns: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Masa Kerja</label><input type="text" value={formData.masaKerja} onChange={(e) => setFormData({ ...formData, masaKerja: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Nama Latihan Jabatan</label><input type="text" value={formData.namaLatihanJabatan} onChange={(e) => setFormData({ ...formData, namaLatihanJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Tanggal Latihan Jabatan</label><input type="date" value={formData.tanggalLatihanJabatan} onChange={(e) => setFormData({ ...formData, tanggalLatihanJabatan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Lama (Jam)</label><input type="text" value={formData.lamaJam} onChange={(e) => setFormData({ ...formData, lamaJam: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Fakultas Pendidikan Terakhir</label><input type="text" value={formData.namaFakultasPendidikanTerakhir} onChange={(e) => setFormData({ ...formData, namaFakultasPendidikanTerakhir: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Jurusan Pendidikan Terakhir</label><input type="text" value={formData.jurusanPendidikanTerakhir} onChange={(e) => setFormData({ ...formData, jurusanPendidikanTerakhir: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Tahun Lulus</label><input type="number" value={formData.tahunLulusPendidikan} onChange={(e) => setFormData({ ...formData, tahunLulusPendidikan: e.target.value })} placeholder="2015" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Karpeg</label><input type="text" value={formData.karpeg} onChange={(e) => setFormData({ ...formData, karpeg: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div className="md:col-span-2"><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Catatan Mutasi</label><textarea rows={2} value={formData.catatanMutasi} onChange={(e) => setFormData({ ...formData, catatanMutasi: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
+                <div className="md:col-span-2"><label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">Keterangan</label><textarea rows={2} value={formData.keterangan} onChange={(e) => setFormData({ ...formData, keterangan: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-amber-600 outline-none" /></div>
               </div>
             </div>
 
@@ -632,7 +632,7 @@ const MasterKaryawan: React.FC = () => {
               </button>
               <button
                 type="submit"
-                className="flex-1 py-4 bg-teal-500 text-white font-bold rounded-2xl shadow-lg shadow-teal-100 hover:bg-teal-600 transition-all"
+                className="flex-1 py-4 bg-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-amber-100 hover:bg-amber-700 transition-all"
               >
                 {editingUser ? 'Simpan Perubahan' : 'Daftarkan Sekarang'}
               </button>
@@ -688,7 +688,7 @@ const MasterKaryawan: React.FC = () => {
                   <div className="flex flex-col items-center">
                     <button 
                       onClick={() => openDocModal(user)}
-                      className="group flex items-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-teal-50 text-teal-600 rounded-xl hover:bg-teal-500 hover:text-white transition-all border border-teal-100 text-xs font-bold"
+                      className="group flex items-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-amber-50 text-amber-600 rounded-xl hover:bg-amber-700 hover:text-white transition-all border border-amber-100 text-xs font-bold"
                     >
                       <span>{user.documents.length} Berkas</span>
                       <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
@@ -785,7 +785,7 @@ const MasterKaryawan: React.FC = () => {
       {isDocModalOpen && viewingUser && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-md">
           <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-300">
-             <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-teal-500 text-white">
+             <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-amber-600 text-white">
                <div className="flex items-center gap-4">
                  {viewingUser.profilePhotoUrl ? (
                    <img 
@@ -801,7 +801,7 @@ const MasterKaryawan: React.FC = () => {
                  )}
                  <div>
                    <h2 className="text-xl font-black">{viewingUser.fullName}</h2>
-                  <p className="text-xs text-teal-100 font-bold uppercase tracking-widest">{viewingUser.username}</p>
+                  <p className="text-xs text-amber-100 font-bold uppercase tracking-widest">{viewingUser.username}</p>
                   <div className="flex flex-wrap gap-2 mt-2 text-[10px] font-semibold">
                     {viewingUser.nip && (
                       <span className="px-2 py-1 rounded-full bg-white/10 border border-white/30">
@@ -977,7 +977,7 @@ const MasterKaryawan: React.FC = () => {
                {/* Checklist dokumen */}
                {isLoadingDocuments ? (
                  <div className="p-10 text-center">
-                   <div className="animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-teal-500 border-teal-200"></div>
+                   <div className="animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-amber-500 border-amber-200"></div>
                    <p className="text-slate-400 font-medium mt-4">Memuat dokumen...</p>
                  </div>
                ) : (
@@ -990,9 +990,9 @@ const MasterKaryawan: React.FC = () => {
                      docTypes.map(type => {
                        const doc = viewingUserDocuments.find(d => d.documentTypeId === type.id);
                        return (
-                         <div key={type.id} className="flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-teal-200 transition-all group">
+                         <div key={type.id} className="flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-amber-200 transition-all group">
                            <div className="flex items-center gap-4">
-                             <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${doc ? 'bg-teal-100 text-teal-600' : 'bg-slate-200 text-slate-400'}`}>
+                             <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${doc ? 'bg-amber-100 text-amber-600' : 'bg-slate-200 text-slate-400'}`}>
                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                              </div>
                              <div>
@@ -1014,7 +1014,7 @@ const MasterKaryawan: React.FC = () => {
                                    href={doc.fileUrl} 
                                    target="_blank" 
                                    rel="noreferrer"
-                                   className="px-5 py-2.5 bg-teal-500 text-white text-xs font-bold rounded-xl hover:bg-teal-600 shadow-lg shadow-teal-100 transition-all flex items-center gap-2"
+                                   className="px-5 py-2.5 bg-amber-600 text-white text-xs font-bold rounded-xl hover:bg-amber-700 shadow-lg shadow-amber-100 transition-all flex items-center gap-2"
                                  >
                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                    Lihat Berkas
